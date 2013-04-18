@@ -19,6 +19,9 @@
     .ui-content .ui-listview-inset, .ui-panel-inner .ui-listview-inset {
       margin: 0px;
     }
+    .event_image {
+      position: relative;
+    }
   </style>
 </head>
 
@@ -31,10 +34,10 @@
   </div>
   <fieldset class="ui-grid-a">
     <div class="ui-block-a">
-      <a href="events1.html" data-role="button" data-icon="arrow-l" data-iconpos="left">October 7, 2013</a>
+      <a href="events1.html" data-role="button" data-mini="true" data-icon="arrow-l" data-iconpos="left">Prev</a>
     </div>
     <div class="ui-block-b">
-      <a href="events3.html" data-role="button" data-icon="arrow-r" data-iconpos="right">October 9, 2013</a>
+      <a href="events3.html" data-role="button" data-mini="true" data-icon="arrow-r" data-iconpos="right">Next</a>
     </div>
   </fieldset>
   <div data-role="content">
@@ -42,18 +45,16 @@
       <ul data-role="listview" data-inset="true">
         <li data-role="list-divider" id="2013-10-8">Friday, October 8, 2013 <span class="ui-li-count">2</span></li>
         <li>
-          <img src="assets/images/event_1.png" />
-            <h2>Solar Electric Vehicle Competition</h2>
-            <p><strong>CollegeTech SEVT</strong></p>
-            <p>All weekend Solar Electric Vehicle teams from across the nation will compete in various races and challenges in a competitive showdown of solar efficiency and ingenuity.</p>
-            <p class="ui-li-aside"><strong>11:00</strong>AM - <strong>6:00</strong>PM</p>
+            <p><strong>11:00</strong>AM - <strong>6:00</strong>PM</p>
+            <p><strong>Solar Electric Vehicle Competition</strong></p>
+            <p><img class="ui-li-thumb event_image" src="assets/images/event_1.png" />
+            All weekend Solar Electric Vehicle teams from across the nation will compete in various races and challenges in a competitive showdown of solar efficiency and ingenuity.</p>
         </li>
         <li>
-          <img src="assets/images/event_3.gif" />
-            <h2>CollegeTech Prep Programs</h2>
-            <p><strong>Undergraduate Education Council</strong></p>
-            <p>Are you ready for next semester? Get ahead on your classes and spend your weekend studying! Find out which programs you're interested in at this event.</p>
-            <p class="ui-li-aside"><strong>11:00</strong>PM - <strong>2:00</strong>AM</p>
+            <p><strong>11:00</strong>PM - <strong>2:00</strong>AM</p>
+            <p><strong>CollegeTech Prep Programs</strong></p>
+            <p><img class="ui-li-thumb event_image" src="assets/images/event_3.gif" />
+            Are you ready for next semester? Get ahead on your classes and spend your weekend studying! Find out which programs you're interested in at this event.</p>
         </li>
       </ul>
     </div>
