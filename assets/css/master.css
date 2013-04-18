@@ -1,0 +1,11 @@
+.ui-li-thumb {
+  margin: 10px;
+  border-radius: 10px;
+  box-shadow: 0 1px 3px rgba(0,0,0,.75);
+}
+.ui-li-desc {
+  white-space: normal;
+  text-indent: 15px;
+  font-size: 10pt;
+  line-height: 120%;
+}
