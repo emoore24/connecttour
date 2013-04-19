@@ -12,3 +12,82 @@
 .event_image {
   position: relative;
 }
+#menu-title {
+	text-align: center;
+
+}
+
+#menu-college {
+	text-align: center;
+	margin-bottom: 0px;
+}
+
+#menu-loc-info {
+	text-align: center;
+	margin-bottom: 0px;
+}
+
+.menu-explanation {
+	/*color: #eeeeee;*/
+}
+
+#menu-list {
+	margin: 0px 10px;
+}
+
+#menu-checkin {
+	width: 100px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.swipe {
+  overflow: hidden;
+  visibility: hidden;
+  position: relative;
+  margin: 0px 10px;
+}
+.swipe-wrap {
+  overflow: hidden;
+  position: relative;
+  margin: 0px 10px;
+}
+.swipe-wrap > div {
+  float:left;
+  width:100%;
+  position: relative;
+
+}
+
+#stat-dots {
+	width: 50px;
+	margin: 0px auto;
+}
+
+
+.dot {
+	display: inline-block;
+	width: 10px;
+	height: 10px;
+	border: 1px solid black;
+	border-radius: 5px;
+	cursor: pointer;
+
+}
+
+.active-dot {
+	background-color: #ccc;
+}
+
+.stat-graph {
+	margin: 0px auto;
+}
+
+.faqs {
+	margin: 0px 10px;
+}
+
+#map-content {
+	height: 100%;
+	width: 100%;
+}
