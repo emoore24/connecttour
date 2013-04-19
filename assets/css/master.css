@@ -9,3 +9,6 @@
   font-size: 10pt;
   line-height: 120%;
 }
+.event_image {
+  position: relative;
+}
