@@ -9,6 +9,7 @@
   font-size: 10pt;
   line-height: 120%;
 }
+
 .event_image {
   position: relative;
 }
@@ -91,3 +92,35 @@
 	height: 100%;
 	width: 100%;
 }
+
+#question_queue {
+	margin-top:10px;
+}
+
+div.bigstars div.rateit-range {
+	background: "assets/rateit/example/content/star-white32.png";
+	height: 32px;
+}
+
+div.bigstars div.rateit-hover {
+    background: "assets/rateit/example/content/star-gold32.png";
+}
+ 
+div.bigstars div.rateit-selected {
+    background: "assets/rateit/example/content/star-red32.png";
+}
+ 
+div.bigstars div.rateit-reset {
+    background: "assets/rateit/example/content/star-black32.png";
+    width: 32px;
+    height: 32px;
+}
+ 
+div.bigstars div.rateit-reset:hover {
+    background: "assets/rateit/example/content/star-white32.png";
+}
+
+input.ui-slider-input {
+    display : none !important;
+}
+
