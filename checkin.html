@@ -17,23 +17,33 @@
   <div data-role="content">
     <label for="text-basic">Name:</label>
     <input type="text" name="text-basic" id="text-basic" value="">
-    <label for="select-choice-1" class="select">Select School...</label>
+    <label for="select-choice-1" class="select">Select School:</label>
     <select name="select-choice-1" id="select-choice-1">
         <option value="MIT">MIT</option>
         <option value="CollegeTech">CollegeTech</option>
         <option value="BostonUniversity">Boston University</option>
         <option value="Harvard">Harvard</option>
     </select>
-    <label for="select-choice-1" class="select">Select Tour...</label>
+    <label for="select-choice-1" class="select">Select Tour:</label>
     <select name="select-choice-1" id="select-choice-1">
         <option value="marsha">Marsha, 9:00 AM</option>
         <option value="claire">Claire, 11:00 AM</option>
         <option value="mark">Mark, 2:00 PM</option>
         <option value="bob">Bob, 3:00 PM</option>
     </select>
-    <input type="submit" value="Check In" data-icon="grid" data-iconpos="right" />
+    <input type="submit" id="submit_checkin" value="Check In" data-icon="grid" data-iconpos="right" />
   </div>
 </div>
 </body>
 
 </html>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+
+    $("#submit_checkin").click(function(){
+      window.location.href = "main.html";
+    });
+
+  })
+</script>
