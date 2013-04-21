@@ -21,8 +21,8 @@
     <h1>ConnecTour</h1>
   </div>
   <div data-role="content" data-theme="a" >
-    <label for="text-basic">Name:</label>
-    <input type="text" name="text-basic" id="text-basic" value="">
+<!--     <label for="text-basic">Name:</label>
+    <input type="text" name="text-basic" id="text-basic" value=""> -->
     <label for="select-choice-1" class="select">Select School:</label>
     <select name="select-choice-1" id="select-choice-1">
         <option value="MIT">MIT</option>
@@ -32,10 +32,10 @@
     </select>
     <label for="select-choice-1" class="select">Select Tour:</label>
     <select name="select-choice-1" id="select-choice-1">
-        <option value="marsha">Marsha, 9:00 AM</option>
-        <option value="claire">Claire, 11:00 AM</option>
+        <option value="marsha">Dominic, 9:00 AM</option>
+<!--         <option value="claire">Claire, 11:00 AM</option>
         <option value="mark">Mark, 2:00 PM</option>
-        <option value="bob">Bob, 3:00 PM</option>
+        <option value="bob">Bob, 3:00 PM</option> -->
     </select>
     <input type="submit" id="submit_checkin" value="Check In" data-icon="grid" data-iconpos="right" />
   </div>
@@ -48,7 +48,7 @@
   $(document).ready(function(){
 
     $("#submit_checkin").click(function(){
-      window.location.href = "main.html";
+      window.location.href = "main_checkin.html";
     });
 
   })
