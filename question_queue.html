@@ -87,25 +87,38 @@
 <script type="text/javascript">
 	$(document).ready(function(){
 
+		$("#add_question").focus();
+
 		$("#home").click(function(){
 			window.location.href = "main.html";
-		})
-		var entered_text = $("#question_queue").val();
-		var question = document.createElement("li");
-		question.addClass("ui-li");
-		question.addClass("ui-li-static");
-		question.addClass("ui-btn-up-c");
-		var time = document.createElement("p");
-		time.addClass("ui-li-aside");
-		time.addClass("ui-li-desc");
-		var t_amt = document.createElement("strong");
-		t_amt.text("0");
-		time.append(t_amt);
-		time.append(" sec");
-		var title = document.createElement("h4");
-		title.text(entered_text);
-		question.append(time);
-		question.append(title);
-		$("#question_queue").append(question);
+		});
+
+		function update_queue(){
+			var entered_text = $("#add_question").val();
+			var question = document.createElement("li");
+			$(question).addClass("ui-li");
+			$(question).addClass("ui-li-static");
+			$(question).addClass("ui-btn-up-c");
+			var time = document.createElement("p");
+			$(time).addClass("ui-li-aside");
+			$(time).addClass("ui-li-desc");
+			var t_amt = document.createElement("strong");
+			$(t_amt).text("0");
+			$(time).append(t_amt);
+			$(time).append(" sec");
+			var title = document.createElement("h4");
+			$(title).text(entered_text);
+			$(question).append(time);
+			$(question).append(title);
+			$("#question_queue").append(question);
+			$("#add_question").val("");
+			$("#add_question").focus();
+		};
+
+		$("#add_question").keydown(function (e){
+			if (e.keyCode==13){
+				update_queue();
+			}
+		});
 	})
 </script>
