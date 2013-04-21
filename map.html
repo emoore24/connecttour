@@ -56,6 +56,9 @@
       // google.maps.event.addDomListener(window, 'load', initialize);
       $(document).ready(function() {
         initialize();
+        $("#home").click(function(){
+          window.location.href = "main.html";
+        })
       })
       $('#map-content').on('pagecreate', function() {
         initialize();
@@ -68,7 +71,7 @@
       <div data-role="header">
         <a href="#" data-icon="back" data-rel="back">Back</a>
         <h1 id="menu-title">Map</h1>
-        <a href="main.html" data-icon="home">Home</a>
+        <a id="home" href="#" data-icon="home">Home</a>
       </div>
       <div data-role="content" id="map-content">
         <div id="map-canvas"></div>

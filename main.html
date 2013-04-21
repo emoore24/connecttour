@@ -22,27 +22,27 @@
     <div data-role="content" data-theme="a">
 	<a href="#" id="menu-checkin" data-role="button" data-inline="true" data-icon="check" data-mini="true">Check In</a>
 	<ul data-role="listview" data-inset="true" id='menu-list'>
-		<li><a href="question_queue.html">
+		<li><a id="qq" href="">
 			<h2>Question Queue</h2>
 			<p class='menu-explanation'>Ask questions to the Tour Guide</p>
 		</a></li>
-		<li><a href="stats.html">
+		<li><a id="gs" href="">
 			<h2>General Stats/FAQ</h2>
 			<p class='menu-explanation'>Check out general statistics and frequently asked questions</p>
 		</a></li>
-		<li><a href="map.html">
+		<li><a id="m" href="">
 			<h2>Map</h2>
 			<p class='menu-explanation'>Visually explore the campus</p>
 		</a></li>
-		<li><a href="events2.html">
+		<li><a id="e" href="">
 			<h2>Events</h2>
 			<p class='menu-explantion'>See what's going on this week at CollegeTech </p>
 			</a></li>
-		<li><a href="stories.html">
+		<li><a id="s" href="">
 			<h2>Stories</h2>
 			<p class='menu-explanation'>Hear from CollegeTech students about life at the university</p>
 		</a></li>
-		<li><a href="tour_feedback.html">
+		<li><a id="tf" href="">
 			<h2>Tour Feedback</h2>
 			<p class='menu-explanation'> Give Feedback to your Tour Guide </p>
 		</a></li>
@@ -50,3 +50,28 @@
   </div>
 </body>
 </html>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+
+		$("#qq").click(function(){
+			window.location.href = "question_queue.html";
+		})
+		$("#gs").click(function(){
+			window.location.href = "stats.html";
+		})
+		$("#m").click(function(){
+			window.location.href = "map.html";
+		})
+		$("#e").click(function(){
+			window.location.href = "events2.html";
+		})
+		$("#s").click(function(){
+			window.location.href = "stories.html";
+		})
+		$("#tf").click(function(){
+			window.location.href = "tour_feedback.html";
+		})
+
+	})
+</script>
