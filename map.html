@@ -20,10 +20,29 @@
         var latitude, longitude;
         if(navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(function(position){
+            console.log("whoa");
             latitude = position.coords.latitude;
             longitude = position.coords.longitude;
+          }, function(err){
+            console.log(err.code);
+            switch(err.code) {
+              case err.PERMISSION_DENIED:
+                  console.log("User denied the request for Geolocation.");
+                break;
+              case err.POSITION_UNAVAILABLE:
+                  console.log("Location information is unavailable.");
+                  break;
+              case err.TIMEOUT:
+                  console.log("The request to get user location timed out.")
+                  break;
+              case err.UNKNOWN_ERROR:
+                  console.log("An unknown error occurred.");
+                  break;
+            }
           });
         }
+        console.log(latitude);
+        console.log(longitude);
         var mapOptions = {
           center: new google.maps.LatLng(latitude, longitude),
           zoom: 8,
