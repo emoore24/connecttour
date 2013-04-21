@@ -17,7 +17,7 @@
 	<div data-role="header" data-theme="b">
 		<a href="#" data-icon="back" data-rel="back">Back</a>
 		<h1 id="menu-title">General Stats/FAQ</h1>
-		<a href="main.html" data-icon="home">Home</a>
+		<a id="home" href="#" data-icon="home">Home</a>
 	</div>
     <div data-role="content" data-theme="a"> 
 
@@ -55,3 +55,13 @@
 </body>
 
 </html>
+
+<script type="text/javascript">
+
+  $(document).ready(function(){
+    $("#home").click(function(){
+      window.location.href = "main.html";
+    })
+  })
+  
+</script>
