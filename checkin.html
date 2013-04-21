@@ -1,22 +1,28 @@
+
 <!DOCTYPE html>
 <html>
 
 <head>
-  <meta name="viewport" content="initial-scale=1, maximum-scale=1">
-  <link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.css" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="assets/css/custom-theme.css" />
+  <link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.1/jquery.mobile.structure-1.3.1.min.css" />
   <link rel="stylesheet" href="assets/css/master.css" />
   <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
   <script src="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.js"></script>
+  <!--
+  <link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.css" />
+  -->
 </head>
 
 <body>
-<div data-role="page">
-  <div data-role="header">
+<div data-role="page" data-theme="a">
+  <div data-role="header" data-theme="b">
     <h1>ConnecTour</h1>
   </div>
-  <div data-role="content">
+  <div data-role="content" data-theme="a" >
     <label for="text-basic">Name:</label>
-    <input type="text" name="text-basic" id="text-basic" value="">
+    <input type="text" name="text-basic" id="text-basic" value="" />
     <label for="select-choice-1" class="select">Select School...</label>
     <select name="select-choice-1" id="select-choice-1">
         <option value="MIT">MIT</option>
@@ -25,11 +31,11 @@
         <option value="Harvard">Harvard</option>
     </select>
     <label for="select-choice-1" class="select">Select Tour...</label>
-    <select name="select-choice-1" id="select-choice-1">
-        <option value="marsha">Marsha, 9:00 AM</option>
-        <option value="claire">Claire, 11:00 AM</option>
-        <option value="mark">Mark, 2:00 PM</option>
-        <option value="bob">Bob, 3:00 PM</option>
+    <select name="select-choice-1" id="select-choice-1" data-theme="a" >
+        <option value="marsha">9:00 AM</option>
+        <option value="claire">11:00 AM</option>
+        <option value="mark">2:00 PM</option>
+        <option value="bob">3:00 PM</option>
     </select>
     <input type="submit" value="Check In" data-icon="grid" data-iconpos="right" />
   </div>
@@ -37,3 +43,4 @@
 </body>
 
 </html>
+
