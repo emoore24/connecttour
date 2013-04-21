@@ -11,8 +11,10 @@
 	</head>
 	<body>
       <div data-role="page" data-theme="a">
-		<div id="header" data-role="header" data-theme="b">
-			<h1>Question Queue</h1>
+		<div id="header" data-role="header">
+			<a href="#" data-rel="back">Back</a>
+    		<h1>Question Queue</h1>
+    		<a href="main.html" data-icon="check">Home</a>
 		</div><!-- /header -->
 		<div id="content" data-role="content" data-theme="a">
 
@@ -81,3 +83,25 @@
       </div>
 	</body>
 </html>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		var entered_text = $("#question_queue").val();
+		var question = document.createElement("li");
+		question.addClass("ui-li");
+		question.addClass("ui-li-static");
+		question.addClass("ui-btn-up-c");
+		var time = document.createElement("p");
+		time.addClass("ui-li-aside");
+		time.addClass("ui-li-desc");
+		var t_amt = document.createElement("strong");
+		t_amt.text("0");
+		time.append(t_amt);
+		time.append(" sec");
+		var title = document.createElement("h4");
+		title.text(entered_text);
+		question.append(time);
+		question.append(title);
+		$("#question_queue").append(question);
+	})
+</script>
