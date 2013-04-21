@@ -1,3 +1,7 @@
+body {
+	font-family: Georgia;
+}
+
 .ui-li-thumb {
   margin: 10px;
   border-radius: 10px;
@@ -13,9 +17,12 @@
 .event_image {
   position: relative;
 }
-#menu-title {
-	text-align: center;
 
+font-family: 'Lobster Two', cursive;
+
+
+.lobster-two {
+	font-family: "Lobster Two", Lucida Console, serif;
 }
 
 #menu-college {
@@ -25,7 +32,7 @@
 
 #menu-loc-info {
 	text-align: center;
-	margin-bottom: 0px;
+	margin: 0px auto;
 }
 
 .menu-explanation {
@@ -140,5 +147,19 @@ div.bigstars div.rateit-reset:hover {
 
 input.ui-slider-input {
     display : none !important;
+}
+
+
+#guide-profile {
+	text-decoration: none;
+	color: #00CC00;
+}
+
+#guide-profile:hover {
+	text-decoration: underline;
+}
+
+#info-table {
+	margin-top: 10px;
 }
 

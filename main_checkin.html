@@ -18,22 +18,38 @@
 	<div data-role="header" data-theme="b">
 		<h1 class="lobster-two">ConnecTour</h1>
 	</div>
+	<div data-role="content" data-theme="a">
+	<table align="center" id="info-table">
+		<tr>
+			<td>
+				<a href="profile1.html" id="guide-profile">
+					<img src="assets/images/story_1.jpg" style="width: 100px; height: inherit;" />
+					<br />
+					<span id="guide-name" style="text-align: center;">Dominic Petito</span>
+					<br />
+					<span style="text-align: center;">9:00 - 10:00AM</span>
+				</a>
+			</td>
+			<td>
+				<h2 id="menu-college">CollegeTech</h2>
+				<h4 id="menu-loc-info">You are at: <span id='menu-location'>Killian Court</span></h4>
+			</td>
+		</tr>
+	</table>
 	
-    <div data-role="content" data-theme="a">
-    <h2 id="menu-college">CollegeTech</h2>
-	<h4 id="menu-loc-info">You are at: <span id='menu-location'>Killian Court</span></h4>
-    <table align="center">
+    
+    <!-- <table align="center">
     	<tr>
     		<td>
 				<a href="#" id="menu-checkin" data-role="button" data-inline="true" data-icon="check" data-mini="true">Check In</a>
 			</td>
 		</tr>
-	</table>
+	</table> -->
 	<ul data-role="listview" data-inset="true" id='menu-list'>
-		<!-- <li><a id="qq" href="">
+		<li><a id="qq" href="">
 			<h2>Question Queue</h2>
 			<p class='menu-explanation'>Ask questions to the Tour Guide</p>
-		</a></li> -->
+		</a></li>
 		<li><a id="gs" href="">
 			<h2>General Stats/FAQ</h2>
 			<p class='menu-explanation'>Check out general statistics and frequently asked questions</p>
@@ -50,10 +66,10 @@
 			<h2>Stories</h2>
 			<p class='menu-explanation'>Hear from CollegeTech students about life at the university</p>
 		</a></li>
-		<!-- <li><a id="tf" href="">
+		<li><a id="tf" href="">
 			<h2>Tour Feedback</h2>
 			<p class='menu-explanation'> Give Feedback to your Tour Guide </p>
-		</a></li> -->
+		</a></li>
 	</ul>
   </div>
 </body>
@@ -82,9 +98,6 @@
 		})
 		$("#guide-profile").click(function(){
 			window.location.href = "profile1.html";
-		})
-		$("#menu-checkin").click(function(){
-			window.location.href = "checkin.html";
 		})
 
 	})
