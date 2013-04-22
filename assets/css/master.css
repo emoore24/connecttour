@@ -18,11 +18,14 @@ body {
   position: relative;
 }
 
-font-family: 'Lobster Two', cursive;
-
 
 .lobster-two {
 	font-family: "Lobster Two", Lucida Console, serif;
+}
+
+#logo {
+  font-size: 28pt !important;
+  margin: 25px 0 25px 0 !important;
 }
 
 #menu-college {
