@@ -18,6 +18,16 @@ body {
   position: relative;
 }
 
+@font-face {
+	font-family: 'sanford';
+	font-style: normal;
+	font-weight: 400;
+	src: local('assets/sanford.ttf');
+}
+
+.sanford {
+
+}
 
 .lobster-two {
 	font-family: "Lobster Two", Lucida Console, serif;
