@@ -1,8 +1,11 @@
 {
-	"dependencies" : {
-		"express" : "3.2.x",
-		"socket.io" : "0.9.x",
-		"pg" : "1.1.x"
-	}
-
+  "name": "ConnecTour",
+  "version": "1.0.0",
+  "dependencies" : {
+    "express" : "3.2.x",
+    "socket.io" : "0.9.x",
+    "pg" : "1.1.x",
+    "ejs": "*",
+    "ejs-locals": "*",
+  }
 }

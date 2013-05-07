@@ -1,0 +1,57 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'node', '/usr/local/bin/npm', 'install', './routes' ]
+2 info using npm@1.2.18
+3 info using node@v0.10.5
+4 verbose read json /Users/carlobiedenharn/Documents/MIT_Work/6.813/connecttour/package.json
+5 verbose read json /Users/carlobiedenharn/Documents/MIT_Work/6.813/connecttour/node_modules/ejs/package.json
+6 verbose read json /Users/carlobiedenharn/Documents/MIT_Work/6.813/connecttour/node_modules/ejs-locals/package.json
+7 verbose read json /Users/carlobiedenharn/Documents/MIT_Work/6.813/connecttour/node_modules/express/package.json
+8 verbose read json /Users/carlobiedenharn/Documents/MIT_Work/6.813/connecttour/node_modules/pg/package.json
+9 verbose read json /Users/carlobiedenharn/Documents/MIT_Work/6.813/connecttour/node_modules/socket.io/package.json
+10 verbose from cache /Users/carlobiedenharn/Documents/MIT_Work/6.813/connecttour/package.json
+11 verbose readDependencies using package.json deps
+12 verbose cache add [ './routes', null ]
+13 verbose cache add name=undefined spec="./routes" args=["./routes",null]
+14 verbose parsed url { protocol: null,
+14 verbose parsed url   slashes: null,
+14 verbose parsed url   auth: null,
+14 verbose parsed url   host: null,
+14 verbose parsed url   port: null,
+14 verbose parsed url   hostname: null,
+14 verbose parsed url   hash: null,
+14 verbose parsed url   search: null,
+14 verbose parsed url   query: null,
+14 verbose parsed url   pathname: './routes',
+14 verbose parsed url   path: './routes',
+14 verbose parsed url   href: './routes' }
+15 silly lockFile 217fa6cf-routes ./routes
+16 verbose lock ./routes /Users/carlobiedenharn/.npm/217fa6cf-routes.lock
+17 info maybeGithub Attempting to fetch ./routes from git://github.com/./routes
+18 silly lockFile 9e378cab-git-github-com-routes git://github.com/./routes
+19 verbose lock git://github.com/./routes /Users/carlobiedenharn/.npm/9e378cab-git-github-com-routes.lock
+20 verbose addRemoteGit [ 'git://github.com/./routes', 'master' ]
+21 silly exec git "clone" "--mirror" "git://github.com/./routes" "/Users/carlobiedenharn/.npm/_git-remotes/git-github-com-routes-9e378cab"
+22 silly git,clone,--mirror,git://github.com/./routes,/Users/carlobiedenharn/.npm/_git-remotes/git-github-com-routes-9e378cab, spawning
+23 error git clone git://github.com/./routes Cloning into bare repository '/Users/carlobiedenharn/.npm/_git-remotes/git-github-com-routes-9e378cab'...
+23 error git clone git://github.com/./routes
+23 error git clone git://github.com/./routes fatal: remote error:
+23 error git clone git://github.com/./routes   Repository not found.
+24 silly lockFile 9e378cab-git-github-com-routes git://github.com/./routes
+25 silly lockFile 9e378cab-git-github-com-routes git://github.com/./routes
+26 silly lockFile 217fa6cf-routes ./routes
+27 silly lockFile 217fa6cf-routes ./routes
+28 error addLocal Could not install ./routes
+29 error Error: ENOENT, stat './routes'
+30 error If you need help, you may report this log at:
+30 error     <http://github.com/isaacs/npm/issues>
+30 error or email it to:
+30 error     <npm-@googlegroups.com>
+31 error System Darwin 10.8.0
+32 error command "node" "/usr/local/bin/npm" "install" "./routes"
+33 error cwd /Users/carlobiedenharn/Documents/MIT_Work/6.813/connecttour/routes
+34 error node -v v0.10.5
+35 error npm -v 1.2.18
+36 error path ./routes
+37 error code ENOENT
+38 error errno 34
+39 verbose exit [ 34, true ]

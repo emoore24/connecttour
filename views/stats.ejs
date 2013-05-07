@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/stylesheets/custom-theme.css" />
+  <link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.1/jquery.mobile.structure-1.3.1.min.css" />
+  <link rel="stylesheet" href="/stylesheets/master.css" />
+  <!-- <link rel="stylesheet" href="/stylesheets/style.css" /> -->
+  <script src="assets/js/jquery-1.9.1.min.js"></script>
+  <script src="assets/js/jquery.mobile-1.3.1.min.js"></script>
+  <script src="assets/js/swipe.js"></script>
+  <script src="assets/js/stats.js"></script>
+</head>
+<body>
+<div data-role="page" id='stats' data-theme="a">
+	<div data-role="header" data-theme="b">
+		<a href="#" data-icon="back" data-rel="back">Back</a>
+		<h1 id="menu-title" class="sanford">General Stats/FAQ</h1>
+		<a id="home" href="#" data-icon="home">Home</a>
+	</div>
+    <div data-role="content" data-theme="a"> 
+
+      <div id='slider' class='swipe'>
+        <div class='swipe-wrap'>
+          <div><img src="/images/examples/graph1.jpg" class='stat-graph' width="95%" height="300px" /></div>
+          <div><img src="/images/examples/graph2.gif" class='stat-graph' width="95%" height="300px" /></div>
+          <div><img src="/images/examples/graph3.jpg" class='stat-graph' width="95%" height="300px" /></div>
+        </div>
+      </div>
+
+      <div id="stat-dots">
+          <span class="dot active-dot" id="dot1"></span>
+          <span class="dot" id="dot2"></span>
+          <span class="dot" id="dot3"></span>
+
+      </div>
+
+      <div data-role="collapsible-set" class="faqs">
+          <div data-role="collapsible">
+              <h3>What is the Gender Breakdown?</h3>
+              <p>The Gender Breakdown at CollegeTech is 56% Male, 44% female.</p>
+          </div>
+          <div data-role="collapsible">
+              <h3>How many students go Greek?</h3>
+              <p>Around 40% of students overall go Greek. This includes 20% of females and 50% of males.</p>
+          </div>
+          <div data-role="collapsible">
+              <h3>Average ACT/SAT scores?</h3>
+              <p>Incoming CollegeTech students had an average of 28 on the ACT.</p>
+          </div>
+      </div>
+   </div>
+</div>
+</body>
+
+</html>
+
+<script type="text/javascript">
+
+  $(document).ready(function(){
+    $("#home").click(function(){
+      window.location.href = "main_checkin.html";
+    })
+  })
+  
+</script>

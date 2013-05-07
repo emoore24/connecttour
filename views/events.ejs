@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/stylesheets/custom-theme.css" />
+  <link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.1/jquery.mobile.structure-1.3.1.min.css" />
+  <link rel="stylesheet" href="/stylesheets/master.css" />
+  <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+  <script src="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      $.mobile.ajaxEnabled = false;
+      $("#home").click(function(){
+        window.location.href = "main_checkin.html";
+      })
+    });
+  </script>
+  <style>
+    .ui-content {
+      padding-top: 0px;
+    }
+    .ui-content .ui-listview-inset, .ui-panel-inner .ui-listview-inset {
+      margin: 0px;
+    }
+  </style>
+</head>
+
+<body>
+<div data-role="page" data-theme="a" >
+  <div data-role="header" data-theme="b" >
+    <a href="#" data-rel="back" data-icon="back">Back</a>
+    <h1 class="sanford">Events</h1>
+    <a id="home" href="#" data-icon="check" data-icon="home">Home</a>
+  </div>
+  <fieldset class="ui-grid-a">
+    <div class="ui-block-a">
+      <a href="#" data-role="button" data-mini="true" data-icon="arrow-l" data-iconpos="left">Prev</a>
+    </div>
+    <div class="ui-block-b">
+      <a href="events2.html" data-role="button" data-mini="true" data-icon="arrow-r" data-iconpos="right">Next</a>
+    </div>
+  </fieldset>
+  <div data-role="content" data-theme="a" >
+    <div id="event_container">
+      <ul data-role="listview" data-theme="a" data-inset="true">
+        <li data-role="list-divider" data-theme="a" id="2013-10-7">Thursday, October 7, 2013 <span class="ui-li-count">3</span></li>
+        <li>
+            <p><strong>11:00</strong>AM - <strong>6:00</strong>PM</p>
+            <p><strong>Solar Electric Vehicle Competition</strong></p>
+            <p><img class="ui-li-thumb event_image" src="/images/event_1.png" />
+            All weekend Solar Electric Vehicle teams from across the nation will compete in various races and challenges in a competitive showdown of solar efficiency and ingenuity.</p>
+        </li>
+        <li>
+            <p><strong>5:00</strong>PM - <strong>7:00</strong>PM</p>
+            <p><strong>Sailing Showdown:</p><p>CollegeTech vs. Greenburrow University</strong></h2>
+            <p><img class="ui-li-thumb event_image" src="/images/event_2.jpg" />
+            The sailing team will race head to head against the rank 2 team in the division tonight.</p>
+        </li>
+        <li>
+            <p><strong>A Look at the Modern College Student</strong></p>
+            <p><strong>8:00</strong>PM - <strong>4:00</strong>AM</p>
+            <p><img class="ui-li-thumb event_image" src="/images/event_4.jpg" />
+            A self-reflective seminar where you will judge and criticize your fellow students for not living up to the expectations of our forefathers.</p>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+</body>
+
+</html>
