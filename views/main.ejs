@@ -23,36 +23,46 @@
     <!-- <h2 id="menu-college">CollegeTech</h2>
 	<h4 id="menu-loc-info">You are at: <span id='menu-location'>Killian Court</span></h4> -->
 
-	<table align="center" id="info-table">
-		<tr>
-			<td>
-				<a href="profile1.html" id="guide-profile">
-					<img src="/images/story_1.jpg" style="width: 100px; height: inherit;" />
-					<br />
-					<span id="guide-name" style="text-align: center;">Dominic Petito</span>
-					<br />
-					<span style="text-align: center;">9:00 - 10:00AM</span>
-				</a>
-			</td>
-			<td>
-				<h2 id="menu-college">CollegeTech</h2>
-				<h4 id="menu-loc-info">You are at: <span id='menu-location'>Killian Court</span></h4>
-			</td>
-		</tr>
-	</table>
-	
-    <table align="center">
-    	<tr>
-    		<td>
-				<a href="#" id="menu-checkin" data-role="button" data-inline="true" data-icon="check" data-mini="true">Check In</a>
-			</td>
-		</tr>
-	</table>
+	<% if (checkin) { %>
+		<table align="center" id="info-table">
+			<tr>
+				<td>
+					<%= link_to(tour_guide, 'profiles/' + tour_guide.username) %>
+					<a href="profile1.html" id="guide-profile">
+						<img src="/images/story_1.jpg" style="width: 100px; height: inherit;" />
+						<br />
+						<span id="guide-name" style="text-align: center;">Dominic Petito</span>
+						<br />
+						<span style="text-align: center;">9:00 - 10:00AM</span>
+					</a>
+				</td>
+				<td>
+					<h2 id="menu-college">CollegeTech</h2>
+					<h4 id="menu-loc-info">You are at: <span id='menu-location'>Killian Court</span></h4>
+				</td>
+			</tr>
+		</table>
+	<% }else { %>
+	    <table align="center">
+	    	<tr>
+	    		<td>
+					<a href="#" id="menu-checkin" data-role="button" data-inline="true" data-icon="check" data-mini="true">Check In</a>
+				</td>
+			</tr>
+		</table>
+	<% } %>
 	<ul data-role="listview" data-inset="true" id='menu-list'>
-		<!-- <li><a id="qq" href="">
-			<h2>Question Queue</h2>
-			<p class='menu-explanation'>Ask questions to the Tour Guide</p>
-		</a></li> -->
+			<li>
+				<% if (checkin) { %>
+					<a id="qq" href="">
+				<% }else{ %>
+					<a id="qq" class="disabled" href="checkin.html">
+				<% } %>
+				<h2>Question Queue</h2>
+				<p class='menu-explanation'>Ask questions to the Tour Guide</p>
+				</a>
+			</li>
+
 		<li><a id="gs" href="">
 			<h2>General Stats/FAQ</h2>
 			<p class='menu-explanation'>Check out general statistics and frequently asked questions</p>
@@ -69,10 +79,16 @@
 			<h2>Stories</h2>
 			<p class='menu-explanation'>Hear from CollegeTech students about life at the university</p>
 		</a></li>
-		<!-- <li><a id="tf" href="">
-			<h2>Tour Feedback</h2>
-			<p class='menu-explanation'> Give Feedback to your Tour Guide </p>
-		</a></li> -->
+		<li>
+			<% if (checkin) { %>
+				<a id="tf" href="">
+			<% }else{ %>
+				<a id="tf" class="disabled" href="checkin.html">
+			<% } %>
+				<h2>Tour Feedback</h2>
+				<p class='menu-explanation'> Give Feedback to your Tour Guide </p>
+			</a>
+		</li>
 	</ul>
   </div>
 </body>
