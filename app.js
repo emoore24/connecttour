@@ -12,6 +12,9 @@ var domain = 'localhost';
 //require the module
 var sql = require('sql');
 
+var pg = require('pg');
+module.pg = pg;
+
 //defining our tables
 var user = sql.define({
     name: 'Users',
@@ -54,9 +57,19 @@ var connectstring = "postgres://shcpmwtwyxuxax:IFYCad_h0oQi_YAvjercNOIsto@ec2-54
 var tour_checkin = false, college_checkin = false, current_tour, current_guide, current_college;
 
 
+module.user     = user;
+module.story    = story;
+module.college  = college;
+module.tour     = tour;
+module.event    = event;
+module.faq      = faq;
+module.feedback = feedback;
 
-
-
+module.connectstring   = connectstring;
+module.tour_checkin    = tour_checkin;
+module.college_checkin = college_checkin;
+module.current_college = current_college;
+module.current_guide = current_guide;
 
 
 
@@ -78,7 +91,7 @@ var express = require('express')
 
 var app = express();
 
-	app.engine('ejs', engine);
+app.engine('ejs', engine);
 
 app.configure(function(){
 
@@ -92,7 +105,7 @@ app.configure(function(){
   app.use(express.bodyParser());
   app.use(express.methodOverride());
   app.use(express.cookieParser('wigglybits'));
-    app.use(express.session({ secret: 'whatever', store: store }));
+  app.use(express.session({ secret: 'whatever', store: store }));
   app.use(express.session());
   app.use(app.router);
   app.use(express.static(path.join(__dirname, 'assets')));
@@ -116,7 +129,9 @@ app.configure('development', function(){
 });
 
 app.locals.inspect = require('util').inspect;
-app.get('/', main.show);
+app.get('/', checkin.show);
+app.get('/main', main.show);
+app.post('/main', main.show);
 app.get('/stats', stats.show);
 app.get('/map', map.show);
 app.get('/events', events.show);
@@ -171,5 +186,47 @@ app.post('/confirm', function(req, res){ // Specifies which URL to listen for
            done();
        });
     }
+    })
+});
+
+app.post('/main', function(req, res) {
+    pg.connect(pgconnstring, function(err, client, done) {
+        if (err) {
+          console.log(err);
+        }else {
+          var select_college = req.body.select_college;
+          var select_tour_guide = req.body.select_tour_guide;
+          if (select_college) {
+            module.college_checkin = true;
+            module.current_college = select_college
+          }
+          if (select_tour_guide_mit || select_tour_guide_bu || select_tour_guide_harvard) {
+            if (select_tour_guide_harvard) {
+              select_tour_guide = select_tour_guide_harvard;
+            }
+            else if (select_tour_guide_mit) {
+              select_tour_guide = select_tour_guide_mit;
+            }
+            else if (select_tour_guide_bu) {
+              select_tour_guide = select_tour_guide_bu;
+            }
+            var guide_query = user
+              .select(user.star())
+              .from(user)
+              .where(
+                user.first_name = select_tour_guide
+              ).toQuery();
+            client.query(guide_query, function(err, result) {
+              if (err) {
+                console.log(err);
+              } else {
+                if (result.row.length > 0) {
+                  module.tour_checkin = true;
+                  module.current_guide = result.row[0];
+                }
+              }
+            })  
+          } 
+        };
     })
 });
