@@ -12,6 +12,9 @@ var domain = 'localhost';
 //require the module
 var sql = require('sql');
 
+var pg = require('pg');
+module.pg = pg;
+
 //defining our tables
 var user = sql.define({
     name: 'Users',
@@ -65,6 +68,8 @@ module.feedback = feedback;
 module.connectstring   = connectstring;
 module.tour_checkin    = tour_checkin;
 module.college_checkin = college_checkin;
+module.current_college = current_college;
+module.current_guide = current_guide;
 
 
 
