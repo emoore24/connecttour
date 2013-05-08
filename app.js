@@ -120,7 +120,7 @@ app.get('/stats', stats.show);
 app.get('/map', map.show);
 app.get('/events', events.show);
 app.get('/stories', stories.show);
-app.get('/profile', profile.show);
+app.get('/profile/:id', profile.show);
 app.get('/question_queue', question.show);
 app.get('/tour_feedback', feedback.show);
 app.get('/checkin', checkin.show);
@@ -131,3 +131,41 @@ http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
 });
 
+/*pg.connect(pgconnstring, function (err, client, done) {
+   if (err) {
+       // error!
+       done();
+   } else {
+       client.query('SELECT password FROM users WHERE username=$1', ['tom'], function (err, result) {
+           if (err) {
+               // error!
+           } else if (result.rows.length < 1) {
+               // no user found with that username!
+           } else {
+               console.log(result.rows[0].password)
+           }
+           done();
+       });
+   }
+});*/
+
+app.use(express.bodyParser()); // Automatically parses form data
+
+app.post('/confirm', function(req, res){ // Specifies which URL to listen for
+    // req.body -- contains form data
+    pg.connect(pgconnstring, function (err, client, done) {
+   if (err) {
+       // error!
+       done();
+   } else {
+       client.query('INSERT INTO Feedbacks(user_id, overall, slider_value_engaging, slider_value_informative, comments) values($1, $2, $3, $4, $5)', [current_guide, req.body.overall, req.body.slider_value_engaging, req.body.slider_value_informative, req.body.comments], function(err, result) {
+           if (err) {
+               // error!
+               console.log(err);
+           } else {
+               res.render('/confirm');
+           }
+           done();
+       });
+   }
+});
