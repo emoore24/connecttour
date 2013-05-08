@@ -31,60 +31,9 @@
 			<input type="text" name="add_question" id="add_question" value placeholder="Add a Question" data-theme="a" class="ui-input-text ui-body-a ui-corner-all ui-shadow-inset">
 
 			<ul id="question_queue" data-role="listview" class="ui-listview">
-				<li class="ui-li ui-li-static ui-btn-up-c">
-					<p class="ui-li-aside ui-li-desc">
-						<strong>10</strong> min
-					</p>
-					<h4>What is dining like?</h4>
-				</li>
-				<li class="ui-li ui-li-static ui-btn-up-c">
-					<p class="ui-li-aside ui-li-desc">
-						<strong>7</strong> min
-					</p>
-					<h4>What are popular places for students to study?</h4>
-				</li>
-				<li class="ui-li ui-li-static ui-btn-up-c">
-					<p class="ui-li-aside ui-li-desc">
-						<strong>6</strong> min
-					</p>
-					<h4>What is the drinking culture like on campus?</h4>
-				</li>
-				<li class="ui-li ui-li-static ui-btn-up-c">
-					<p class="ui-li-aside ui-li-desc">
-						<strong>4</strong> min
-					</p>
-					<h4>How safe is the campus at night?</h4>
-				</li>
-				<li class="ui-li ui-li-static ui-btn-up-c">
-					<p class="ui-li-aside ui-li-desc">
-						<strong>3</strong> min
-					</p>
-					<h4>What are the popular off-campus destinations for students?</h4>
-				</li>
-				<li class="ui-li ui-li-static ui-btn-up-c">
-					<p class="ui-li-aside ui-li-desc">
-						<strong>3</strong> min
-					</p>
-					<h4>How much sleep do students get on average?</h4>
-				</li>
-				<li class="ui-li ui-li-static ui-btn-up-c">
-					<p class="ui-li-aside ui-li-desc">
-						<strong>2</strong> min
-					</p>
-					<h4>How often do students go off campus to hang out?</h4>
-				</li>
-				<li class="ui-li ui-li-static ui-btn-up-c">
-					<p class="ui-li-aside ui-li-desc">
-						<strong>1</strong> min
-					</p>
-					<h4>What is the hardest major?</h4>
-				</li>
-				<li class="ui-li ui-li-static ui-btn-up-c">
-					<p class="ui-li-aside ui-li-desc">
-						<strong>40</strong> sec
-					</p>
-					<h4>What is the student culture like compared to other schools?</h4>
-				</li>
+				<!-- <li class="ui-li ui-li-static ui-btn-up-c">
+					<p>What is dining like?</p>
+				</li> -->
 			</ul>
 
 		</div><!-- /content -->
@@ -94,39 +43,57 @@
 
 <script type="text/javascript">
 	$(document).ready(function(){
-
+        
+        var io = module.parent.io;
+        var socket = io.connect("http://serene-anchorage-4890.herokuapp.com");
+        
 		$("#add_question").focus();
 
 		$("#home").click(function(){
-			window.location.href = "main_checkin.html";
+			window.location.href = "main.ejs";
 		});
 
-		function update_queue(){
-			var entered_text = $("#add_question").val();
+		function update_queue(entered_text){
 			var question = document.createElement("li");
 			$(question).addClass("ui-li");
 			$(question).addClass("ui-li-static");
 			$(question).addClass("ui-btn-up-c");
-			var time = document.createElement("p");
+			/*var time = document.createElement("p");
 			$(time).addClass("ui-li-aside");
 			$(time).addClass("ui-li-desc");
 			var t_amt = document.createElement("strong");
 			$(t_amt).text("0");
 			$(time).append(t_amt);
-			$(time).append(" sec");
-			var title = document.createElement("h4");
+			$(time).append(" sec");*/
+			var title = document.createElement("p");
 			$(title).text(entered_text);
 			$(question).append(time);
 			$(question).append(title);
 			$("#question_queue").append(question);
-			$("#add_question").val("");
-			$("#add_question").focus();
 		};
+        
+        function update_textbox(){
+            $("#add_question").val("");
+			$("#add_question").focus();
+        };
 
 		$("#add_question").keydown(function (e){
 			if (e.keyCode==13){
-				update_queue();
+                var entered_text = $("#add_question").val();
+				socket.emit("new_question", entered_text);
+                socket.on("ack", function(){
+                    update_queue(entered_text);
+                    update_textbox();
+                });
 			}
 		});
+        
+        socket.on("new_q", function(q){
+            $("#question_queue").empty();
+            for (var i=0; i<q.length; i++){
+                update_queue(q[i]);
+                update_textbox();
+            }
+        });
 	})
 </script>
