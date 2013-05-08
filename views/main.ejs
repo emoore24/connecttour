@@ -27,18 +27,18 @@
 		<table align="center" id="info-table">
 			<tr>
 				<td>
-					<%= link_to(tour_guide, 'profiles/' + tour_guide.username) %>
+					<%= link_to(first_name + " " + last_name, 'profiles/' + tour_guide.username) %>
 					<a href="profile1.html" id="guide-profile">
-						<img src="/images/story_1.jpg" style="width: 100px; height: inherit;" />
+						<img src=<%= pic_url %> style="width: 100px; height: inherit;" />
 						<br />
-						<span id="guide-name" style="text-align: center;">Dominic Petito</span>
+						<span id="guide-name" style="text-align: center;"><%= first_name + " " + last_name %></span>
 						<br />
-						<span style="text-align: center;">9:00 - 10:00AM</span>
+						<span style="text-align: center;"><%= start_time + "-" + end_time %> </span>
 					</a>
 				</td>
 				<td>
 					<h2 id="menu-college">CollegeTech</h2>
-					<h4 id="menu-loc-info">You are at: <span id='menu-location'>Killian Court</span></h4>
+					<!-- <h4 id="menu-loc-info">You are at: <span id='menu-location'>Killian Court</span></h4> -->
 				</td>
 			</tr>
 		</table>
