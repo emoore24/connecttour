@@ -157,7 +157,8 @@ module.io = io;
 var num_ppl = 0;
 io.sockets.on('connection', function (socket) {
     num_ppl++;
-    io.sockets.emit('number of visitors', num_ppl);
+    console.log('NEW CONNECTION!');
+    io.sockets.emit('new_q', qq);
     socket.on('disconnect', function () {
         num_ppl-=1;
         socket.broadcast.emit('number of visitors', num_ppl);
