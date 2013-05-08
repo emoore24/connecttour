@@ -15,7 +15,7 @@ var sql = require('sql');
 //defining our tables
 var user = sql.define({
     name: 'Users',
-    columns: ['user_id', 'first_name', 'last_name', 'year', 'clubs', 'college_id', 'image_profile_pic']
+    columns: ['user_id', 'first_name', 'last_name', 'year', 'clubs', 'college_id', 'image_profile_pic', 'major']
 });
     
 var story = sql.define({
@@ -120,6 +120,7 @@ app.get('/main', main.show);
 app.get('/stats', stats.show);
 app.get('/map', map.show);
 app.get('/events', events.show);
+app.get('/events/:date', events.show);
 app.get('/stories', stories.show);
 app.get('/profile/:id', profile.show);
 app.get('/question_queue', question.show);
@@ -155,12 +156,13 @@ app.use(express.bodyParser()); // Automatically parses form data
 app.post('/confirm', function(req, res){ // Specifies which URL to listen for
     // req.body -- contains form data
     pg.connect(pgconnstring, function (err, client, done) {
-   if (err) {
+    if (err) {
        // error!
-       done();
-   } else {
-       client.query('INSERT INTO Feedbacks(user_id, overall, slider_value_engaging, slider_value_informative, comments) values($1, $2, $3, $4, $5)', [current_guide, req.body.overall, req.body.slider_value_engaging, req.body.slider_value_informative, req.body.comments], function(err, result) {
-           if (err) {
+        console.log(err);
+        done();
+    } else {
+        client.query('INSERT INTO Feedbacks(user_id, overall, slider_value_engaging, slider_value_informative, comments) values($1, $2, $3, $4, $5)', [current_guide, req.body.overall, req.body.slider_value_engaging, req.body.slider_value_informative, req.body.comments], function(err, result) {
+            if (err) {
                // error!
                console.log(err);
            } else {
@@ -168,7 +170,8 @@ app.post('/confirm', function(req, res){ // Specifies which URL to listen for
            }
            done();
        });
-   }
+    }
+    })
 });
 
 app.post('/main', function(req, res) {

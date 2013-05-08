@@ -32,38 +32,36 @@
   <div data-role="header" data-theme="b" >
     <a href="#" data-rel="back" data-icon="back">Back</a>
     <h1 class="sanford">Events</h1>
-    <a id="home" href="#" data-icon="check" data-icon="home">Home</a>
+    <a id="home" href="#" data-icon="home">Home</a>
   </div>
+
+  <% var d = new Date(date); %>
+  <% var millisec_in_day = 1000*60*60*24; %>
+  <% var yesterday = new Date(d.getTime() - millisec_in_day);%>
+  <% var tomorrow  = new Date(d.getTime() + millisec_in_day);%>
+
   <fieldset class="ui-grid-a">
     <div class="ui-block-a">
-      <a href="#" data-role="button" data-mini="true" data-icon="arrow-l" data-iconpos="left">Prev</a>
+      <a href="/events/<%= yesterday.toISOString().slice(0,10); %>" data-role="button" data-mini="true" data-icon="arrow-l" data-iconpos="left">Prev</a>
     </div>
     <div class="ui-block-b">
-      <a href="events2.html" data-role="button" data-mini="true" data-icon="arrow-r" data-iconpos="right">Next</a>
+      <a href="/events/<%= tomorrow.toISOString().slice(0,10); %>" data-role="button" data-mini="true" data-icon="arrow-r" data-iconpos="right">Next</a>
     </div>
   </fieldset>
   <div data-role="content" data-theme="a" >
     <div id="event_container">
       <ul data-role="listview" data-theme="a" data-inset="true">
-        <li data-role="list-divider" data-theme="a" id="2013-10-7">Thursday, October 7, 2013 <span class="ui-li-count">3</span></li>
+        <li data-role="list-divider" data-theme="a" ><%= d.toDateString() %></li>
+        <% for (var i=0; i<eventlist.length; i++) { %>
         <li>
+            <!-- Figure out how date objects are passed and then do this. -->
             <p><strong>11:00</strong>AM - <strong>6:00</strong>PM</p>
-            <p><strong>Solar Electric Vehicle Competition</strong></p>
-            <p><img class="ui-li-thumb event_image" src="/images/event_1.png" />
-            All weekend Solar Electric Vehicle teams from across the nation will compete in various races and challenges in a competitive showdown of solar efficiency and ingenuity.</p>
+            <p><strong><%= eventlist[i].group_name %></strong></p>
+            <p><img class="ui-li-thumb event_image" src="/images/<%= eventlist[i].image_logo_file %>" />
+            <%= eventlist[i].description %>
+            </p>
         </li>
-        <li>
-            <p><strong>5:00</strong>PM - <strong>7:00</strong>PM</p>
-            <p><strong>Sailing Showdown:</p><p>CollegeTech vs. Greenburrow University</strong></h2>
-            <p><img class="ui-li-thumb event_image" src="/images/event_2.jpg" />
-            The sailing team will race head to head against the rank 2 team in the division tonight.</p>
-        </li>
-        <li>
-            <p><strong>A Look at the Modern College Student</strong></p>
-            <p><strong>8:00</strong>PM - <strong>4:00</strong>AM</p>
-            <p><img class="ui-li-thumb event_image" src="/images/event_4.jpg" />
-            A self-reflective seminar where you will judge and criticize your fellow students for not living up to the expectations of our forefathers.</p>
-        </li>
+        <% } %>
       </ul>
     </div>
   </div>
