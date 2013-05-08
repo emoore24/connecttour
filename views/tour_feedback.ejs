@@ -20,15 +20,15 @@
     		<a id="home" href="#" data-icon="home">Home</a>
 		</div><!-- /header -->
 		<div id="content" data-role="content" data-theme="a">
-			<form>	
-				<div class="bigstars rateit" data-rateit-resetable="false" data-rateit-starwidth="32" data-rateit-starheight="32"></div>
+			<form id="feedback" action="/confirm" method="post">	
+				<div class="bigstars rateit" name="overall" data-rateit-resetable="false" data-rateit-starwidth="32" data-rateit-starheight="32"></div>
 
-				<br/><label for="slider-1" class="slider-label">How engaging was the tour guide:</label>
-    			<input type="range" name="slider-1" id="slider-1" class= "slider"data-highlight="true" min="0" max="100" value="50">
-				<label for="slider-2" class="slider-label">How informative was the tour:</label>
-    			<input type="range" name="slider-2" id="slider-2" class= "slider" data-highlight="true" min="0" max="100" value="50">
+				<br/><label for="slider_value_engaging" class="slider-label">How engaging was the tour guide:</label>
+    			<input type="range" name="slider_value_engaging" id="slider_value_engaging" class= "slider"data-highlight="true" min="0" max="100" value="50">
+				<label for="slider_value_informative" class="slider-label">How informative was the tour:</label>
+    			<input type="range" name="slider_value_informative" id="slider_value_informative" class= "slider" data-highlight="true" min="0" max="100" value="50">
 			    <label for="textarea-1">Any Comments:</label>
-			    <textarea cols="40" rows="8" name="textarea-1" id="textarea-1"></textarea>
+			    <textarea cols="40" rows="8" name="comments" id="comments"></textarea>
 
 			    <button type="submit" data-theme="b" class="ui-btn-hidden" aria-disabled="false">Submit</button>
 
@@ -40,7 +40,18 @@
 <script type="text/javascript">
 	$(document).ready(function(){
 		$("#home").click(function(){
-			window.location.href = "main_checkin.html";
+			window.location.href = "main.ejs";
+            
 		})
+        
+        $("#feedback").submit(function(e){
+            e.preventDefault();
+            $.post(
+                $this.attr("action"), // Gets the URL to sent the post to
+                $this.serialize(), // Serializes form data in standard format
+                function(data) { /** code to handle response **/ },
+                "json"
+            );
+        });
 	})
 </script>

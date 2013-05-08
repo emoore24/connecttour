@@ -7,3 +7,12 @@ exports.show = function(req, res){
 	res.locals.session = req.session;
     res.render('question_queue');
 };
+
+pg.connect(pgconnstring, function (err, client, done) {
+    if (err) {
+        // error!
+        done();
+    } else {
+
+    }
+});

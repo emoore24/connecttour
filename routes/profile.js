@@ -7,3 +7,17 @@ exports.show = function(req, res){
 	res.locals.session = req.session;
     res.render('profile');
 };
+
+pg.connect(pgconnstring, function (err, client, done) {
+    if (err) {
+        // error!
+        done();
+    } else {
+        var query = user
+        .select(user.star())
+        .from(user)
+        .where(
+            user.id.equals(req.param.id)
+        ).toQuery();
+    }
+});

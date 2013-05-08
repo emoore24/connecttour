@@ -122,19 +122,40 @@ http.createServer(app).listen(app.get('port'), function(){
 var connectstring = "postgres://shcpmwtwyxuxax:IFYCad_h0oQi_YAvjercNOIsto@ec2-54-235-152-226.compute-1.amazonaws.com:5432/dfu6b4s2s6n3v1";
 
 pg.connect(pgconnstring, function (err, client, done) {
-    if (err) {
-        // error!
-        done();
-    } else {
-        client.query('SELECT password FROM users WHERE username=$1', ['tom'], function (err, result) {
-            if (err) {
-                // error!
-            } else if (result.rows.length < 1) {
-                // no user found with that username!
-            } else {
-                console.log(result.rows[0].password)
-            }
-            done();
-        });
-    }
+   if (err) {
+       // error!
+       done();
+   } else {
+       client.query('SELECT password FROM users WHERE username=$1', ['tom'], function (err, result) {
+           if (err) {
+               // error!
+           } else if (result.rows.length < 1) {
+               // no user found with that username!
+           } else {
+               console.log(result.rows[0].password)
+           }
+           done();
+       });
+   }
+});
+
+app.use(express.bodyParser()); // Automatically parses form data
+
+app.post('/confirm', function(req, res){ // Specifies which URL to listen for
+    // req.body -- contains form data
+    pg.connect(pgconnstring, function (err, client, done) {
+   if (err) {
+       // error!
+       done();
+   } else {
+       client.query('INSERT INTO Feedbacks(user_id, overall, slider_value_engaging, slider_value_informative, comments) values($1, $2, $3, $4, $5)', [current_guide, req.body.overall, req.body.slider_value_engaging, req.body.slider_value_informative, req.body.comments], function(err, result) {
+           if (err) {
+               // error!
+               console.log(err);
+           } else {
+               res.render('/confirm');
+           }
+           done();
+       });
+   }
 });
