@@ -14,38 +14,38 @@ var sql = require('sql');
 
 //defining our tables
 var user = sql.define({
-    name: 'Users';
-    columns: ['user_id', 'first_name', 'last_name', 'year', 'clubs', 'college_id', 'image_profile_pic'];
+    name: 'Users',
+    columns: ['user_id', 'first_name', 'last_name', 'year', 'clubs', 'college_id', 'image_profile_pic']
 });
     
 var story = sql.define({
-    name: 'Stories';
-    columns: ['story_id', 'user_id', 'college_id', 'story_text'];
+    name: 'Stories',
+    columns: ['story_id', 'user_id', 'college_id', 'story_text']
 });
     
 var college = sql.define({
-    name: 'Colleges';
-    columns: ['college_id', 'name'];
+    name: 'Colleges',
+    columns: ['college_id', 'name']
 }); 
     
 var tour = sql.define({
-    name: 'Tours';
-    columns: ['tour_id', 'user_id', 'college_id', 'start_time', 'end_time'];
+    name: 'Tours',
+    columns: ['tour_id', 'user_id', 'college_id', 'start_time', 'end_time']
 });
     
 var event = sql.define({
-    name: 'Events';
-    columns: ['event_id', 'college_id', 'start_time', 'end_time', 'description', 'image_logo_file', 'group_name'];
+    name: 'Events',
+    columns: ['event_id', 'college_id', 'start_time', 'end_time', 'description', 'image_logo_file', 'group_name']
 });
 
 var faq = sql.define({
-    name: 'Faqs';
-    columns: ['college_id', 'question', 'answer', 'faq_id'];
+    name: 'Faqs',
+    columns: ['college_id', 'question', 'answer', 'faq_id']
 });
     
 var feedback = sql.define({
-    name: 'Feedbacks';
-    columns: ['feedback_id', 'user_id', 'overall', 'slider_value_engaging', 'slider_value_informative', 'comments'];
+    name: 'Feedbacks',
+    columns: ['feedback_id', 'user_id', 'overall', 'slider_value_engaging', 'slider_value_informative', 'comments']
 });
 
 var express = require('express')
