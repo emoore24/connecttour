@@ -182,16 +182,35 @@ app.post('/main', function(req, res) {
           var select_college = req.body.select_college;
           var select_tour_guide = req.body.select_tour_guide;
           if (select_college) {
-            college_checkin = true;
-            current_college = select_college
+            module.college_checkin = true;
+            module.current_college = select_college
           }
-          if (select_tour_guide) {
+          if (select_tour_guide_mit || select_tour_guide_bu || select_tour_guide_harvard) {
+            if (select_tour_guide_harvard) {
+              select_tour_guide = select_tour_guide_harvard;
+            }
+            else if (select_tour_guide_mit) {
+              select_tour_guide = select_tour_guide_mit;
+            }
+            else if (select_tour_guide_bu) {
+              select_tour_guide = select_tour_guide_bu;
+            }
             var guide_query = user
               .select(user.star())
               .from(user)
               .where(
                 user.first_name = select_tour_guide
               ).toQuery();
+            client.query(guide_query, function(err, result) {
+              if (err) {
+                console.log(err);
+              } else {
+                if (result.row.length > 0) {
+                  module.tour_checkin = true;
+                  module.current_guide = result.row[0];
+                }
+              }
+            })  
           } 
         };
     })
