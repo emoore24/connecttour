@@ -79,3 +79,23 @@ app.use(express.static(__dirname + '/public'));
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
 });
+
+var connectstring = "postgres://shcpmwtwyxuxax:IFYCad_h0oQi_YAvjercNOIsto@ec2-54-235-152-226.compute-1.amazonaws.com:5432/dfu6b4s2s6n3v1";
+
+pg.connect(pgconnstring, function (err, client, done) {
+    if (err) {
+        // error!
+        done();
+    } else {
+        client.query('SELECT password FROM users WHERE username=$1', ['tom'], function (err, result) {
+            if (err) {
+                // error!
+            } else if (result.rows.length < 1) {
+                // no user found with that username!
+            } else {
+                console.log(result.rows[0].password)
+            }
+            done();
+        });
+    }
+});
