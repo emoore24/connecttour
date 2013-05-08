@@ -5,6 +5,7 @@ var faqs = []
 
 
 exports.show = function(req, res){
+	var college_checkin = module.parent.college_checkin;
 	if (college_checkin) {
 	    pg.connect(pgconnstring, function (err, client, done) {
 	        if (err) {

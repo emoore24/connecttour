@@ -213,6 +213,9 @@ app.post('/confirm', function(req, res){ // Specifies which URL to listen for
 });
 
 app.post('/main', function(req, res) {
+    console.log("CHECKIN");
+    console.log(req.body.select_college);
+    console.log(req.body.select_tour_guide_mit);
     pg.connect(pgconnstring, function(err, client, done) {
         if (err) {
           console.log(err);
