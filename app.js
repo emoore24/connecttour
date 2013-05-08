@@ -108,7 +108,7 @@ app.get('/stats', stats.show);
 app.get('/map', map.show);
 app.get('/events', events.show);
 app.get('/stories', stories.show);
-app.get('/profile', profile.show);
+app.get('/profile/:id', profile.show);
 app.get('/question_queue', question.show);
 app.get('/tour_feedback', feedback.show);
 app.get('/checkin', checkin.show);
