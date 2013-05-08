@@ -23,45 +23,38 @@
 
       <div id='slider' class='swipe'>
         <div class='swipe-wrap'>
-          <div><img src="/images/examples/graph1.jpg" class='stat-graph' width="95%" height="300px" /></div>
-          <div><img src="/images/examples/graph2.gif" class='stat-graph' width="95%" height="300px" /></div>
-          <div><img src="/images/examples/graph3.jpg" class='stat-graph' width="95%" height="300px" /></div>
+          <% for (var i = 0; i < graphs.length;, i++) { %>
+            <div><img src=<%= graphs[i] %> class='stat-graph' width="95%" height="300px" /></div>
+          <% } %>
         </div>
       </div>
 
       <div id="stat-dots">
           <span class="dot active-dot" id="dot1"></span>
-          <span class="dot" id="dot2"></span>
-          <span class="dot" id="dot3"></span>
+          <% for (var i = 1; i < graphs.length; i++) { %>
+            <span class="dot" id=<%= "dot" + (i + 1) %></span>
+          <% } %>
 
       </div>
 
       <div data-role="collapsible-set" class="faqs">
-          <div data-role="collapsible">
-              <h3>What is the Gender Breakdown?</h3>
-              <p>The Gender Breakdown at CollegeTech is 56% Male, 44% female.</p>
-          </div>
-          <div data-role="collapsible">
+          <% for (var faq in faqs) { %>
+            <div data-role="collapsible">
+                <h3><%= faq[0] %></h3>
+                <p><%= faq[1] %></p>
+            </div>
+          <% } %>
+          <!-- <div data-role="collapsible">
               <h3>How many students go Greek?</h3>
               <p>Around 40% of students overall go Greek. This includes 20% of females and 50% of males.</p>
           </div>
           <div data-role="collapsible">
               <h3>Average ACT/SAT scores?</h3>
               <p>Incoming CollegeTech students had an average of 28 on the ACT.</p>
-          </div>
+          </div> -->
       </div>
    </div>
 </div>
 </body>
 
 </html>
-
-<script type="text/javascript">
-
-  $(document).ready(function(){
-    $("#home").click(function(){
-      window.location.href = "main_checkin.html";
-    })
-  })
-  
-</script>
