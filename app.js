@@ -48,6 +48,18 @@ var feedback = sql.define({
     columns: ['feedback_id', 'user_id', 'overall', 'slider_value_engaging', 'slider_value_informative', 'comments']
 });
 
+
+var connectstring = "postgres://shcpmwtwyxuxax:IFYCad_h0oQi_YAvjercNOIsto@ec2-54-235-152-226.compute-1.amazonaws.com:5432/dfu6b4s2s6n3v1";
+
+var tour_checkin = false, college_checkin = false, current_tour, current_guide, current_college;
+
+
+
+
+
+
+
+
 var express = require('express')
         , engine = require('ejs-locals')
   , http = require('http')
@@ -119,9 +131,6 @@ app.use(express.static(__dirname + '/public'));
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
 });
-
-var connectstring = "postgres://shcpmwtwyxuxax:IFYCad_h0oQi_YAvjercNOIsto@ec2-54-235-152-226.compute-1.amazonaws.com:5432/dfu6b4s2s6n3v1";
-
 
 /*pg.connect(pgconnstring, function (err, client, done) {
    if (err) {

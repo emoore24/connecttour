@@ -23,7 +23,7 @@
     <!-- <h2 id="menu-college">CollegeTech</h2>
 	<h4 id="menu-loc-info">You are at: <span id='menu-location'>Killian Court</span></h4> -->
 
-	<% if (checkin) { %>
+	<% if (tour_checkin) { %>
 		<table align="center" id="info-table">
 			<tr>
 				<td>
@@ -53,11 +53,7 @@
 	<% } %>
 	<ul data-role="listview" data-inset="true" id='menu-list'>
 			<li>
-				<% if (checkin) { %>
-					<a id="qq" href="">
-				<% }else{ %>
-					<a id="qq" class="disabled" href="checkin.html">
-				<% } %>
+				<a id="qq" href="/question_queue">
 				<h2>Question Queue</h2>
 				<p class='menu-explanation'>Ask questions to the Tour Guide</p>
 				</a>
@@ -80,11 +76,7 @@
 			<p class='menu-explanation'>Hear from CollegeTech students about life at the university</p>
 		</a></li>
 		<li>
-			<% if (checkin) { %>
-				<a id="tf" href="">
-			<% }else{ %>
-				<a id="tf" class="disabled" href="checkin.html">
-			<% } %>
+			<a id="tf" href="">
 				<h2>Tour Feedback</h2>
 				<p class='menu-explanation'> Give Feedback to your Tour Guide </p>
 			</a>
