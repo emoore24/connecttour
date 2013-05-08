@@ -68,6 +68,7 @@ app.get('/', main.show);
 app.get('/stats', stats.show);
 app.get('/map', map.show);
 app.get('/events', events.show);
+app.get('/events/:date', events.show);
 app.get('/stories', stories.show);
 app.get('/profile', profile.show);
 app.get('/question_queue', question.show);
