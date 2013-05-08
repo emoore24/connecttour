@@ -107,6 +107,40 @@
         $("#schedule_meetup").submit(function(e){
             e.preventDefault();
             
+            // create reusable transport method (opens pool of SMTP connections)
+            var smtpTransport = nodemailer.createTransport("SMTP",{
+                service: "Gmail",
+                auth: {
+                    user: "connectour.tec@gmail.com",
+                    pass: "ConnecTour12345678910"
+                }
+            });
+            
+            // setup e-mail data with unicode symbols
+            var mailOptions = {
+                from: "Tara Krishnan  <tara.krish16@gmail.com>", // sender address
+                to: "<%= user.email %>" // list of receivers
+                subject: "Meetup Request", // Subject line
+                text: "Name of Tourist:"+$("#tn").val()+"\n 
+                       Phone Number:"+$("#number").val()+"\n
+                       Where:"+$("#where").val()+"\n
+                       When:"+$("#select-choice-0").val()+"\n
+                       Why:" +$("#why").val(), // plaintext body
+                //html: "<b>Meetup Request</b>" // html body
+            }
+            
+            // send mail with defined transport object
+            smtpTransport.sendMail(mailOptions, function(error, response){
+                if(error){
+                    console.log(error);
+                }else{
+                    console.log("Message sent: " + response.message);
+                }
+            
+                // if you don't want to use this transport object anymore, uncomment following line
+                //smtpTransport.close(); // shut down the connection pool, no more messages
+            });
+            
         });
 	})
 </script>

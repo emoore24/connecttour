@@ -65,6 +65,7 @@ var express = require('express')
   , http = require('http')
         , store = new express.session.MemoryStore
   , path = require('path')
+  , nodemailer = require('nodemailer')
   , main     = require('./routes/main')
   , events   = require('./routes/events')
   , stories  = require('./routes/stories')
