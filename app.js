@@ -17,7 +17,6 @@ var user = sql.define({
     name: 'Users',
     columns: ['user_id', 'first_name', 'last_name', 'year', 'clubs', 'college_id', 'image_profile_pic', 'major']
 });
-module.user = user;
     
 var story = sql.define({
     name: 'Stories',
@@ -54,20 +53,26 @@ var connectstring = "postgres://shcpmwtwyxuxax:IFYCad_h0oQi_YAvjercNOIsto@ec2-54
 
 var tour_checkin = false, college_checkin = false, current_tour, current_guide, current_college;
 
-module.tour_checkin = false;
 
+module.user     = user;
+module.story    = story;
+module.college  = college;
+module.tour     = tour;
+module.event    = event;
+module.faq      = faq;
+module.feedback = feedback;
 
-
-
-
+module.connectstring   = connectstring;
+module.tour_checkin    = tour_checkin;
+module.college_checkin = college_checkin;
 
 
 
 var express = require('express')
-        , engine = require('ejs-locals')
-  , http = require('http')
-        , store = new express.session.MemoryStore
-  , path = require('path')
+  , engine  = require('ejs-locals')
+  , http    = require('http')
+  , store   = new express.session.MemoryStore
+  , path    = require('path')
   , main     = require('./routes/main')
   , events   = require('./routes/events')
   , stories  = require('./routes/stories')
@@ -80,7 +85,7 @@ var express = require('express')
 
 var app = express();
 
-	app.engine('ejs', engine);
+app.engine('ejs', engine);
 
 app.configure(function(){
 
@@ -94,7 +99,7 @@ app.configure(function(){
   app.use(express.bodyParser());
   app.use(express.methodOverride());
   app.use(express.cookieParser('wigglybits'));
-    app.use(express.session({ secret: 'whatever', store: store }));
+  app.use(express.session({ secret: 'whatever', store: store }));
   app.use(express.session());
   app.use(app.router);
   app.use(express.static(path.join(__dirname, 'assets')));
