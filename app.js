@@ -115,7 +115,8 @@ app.configure('development', function(){
 });
 
 app.locals.inspect = require('util').inspect;
-app.get('/', main.show);
+app.get('/', checkin.show);
+app.get('/main', main.show);
 app.get('/stats', stats.show);
 app.get('/map', map.show);
 app.get('/events', events.show);
@@ -168,4 +169,27 @@ app.post('/confirm', function(req, res){ // Specifies which URL to listen for
            done();
        });
    }
+});
+
+app.post('/main', function(req, res) {
+    pg.connect(pgconnstring, function(err, client, done) {
+        if (err) {
+          console.log(err);
+        }else {
+          var select_college = req.body.select_college;
+          var select_tour_guide = req.body.select_tour_guide;
+          if (select_college) {
+            college_checkin = true;
+            current_college = select_college
+          }
+          if (select_tour_guide) {
+            var guide_query = user
+              .select(user.star())
+              .from(user)
+              .where(
+                user.first_name = select_tour_guide
+              ).toQuery();
+          } 
+        };
+    })
 });
