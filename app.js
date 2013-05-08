@@ -17,6 +17,7 @@ var user = sql.define({
     name: 'Users',
     columns: ['user_id', 'first_name', 'last_name', 'year', 'clubs', 'college_id', 'image_profile_pic']
 });
+module.user = user;
     
 var story = sql.define({
     name: 'Stories',
@@ -52,6 +53,8 @@ var feedback = sql.define({
 var connectstring = "postgres://shcpmwtwyxuxax:IFYCad_h0oQi_YAvjercNOIsto@ec2-54-235-152-226.compute-1.amazonaws.com:5432/dfu6b4s2s6n3v1";
 
 var tour_checkin = false, college_checkin = false, current_tour, current_guide, current_college;
+
+module.tour_checkin = false;
 
 
 
@@ -116,6 +119,8 @@ app.configure('development', function(){
 
 app.locals.inspect = require('util').inspect;
 app.get('/', main.show);
+app.get('/main', main.show);
+app.post('/main', main.show);
 app.get('/stats', stats.show);
 app.get('/map', map.show);
 app.get('/events', events.show);
