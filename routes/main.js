@@ -7,6 +7,13 @@ console.log("MAIN");
 
 
 exports.show = function(req, res){
+    var tour_checkin = module.parent.tour_checkin;
+    var user = module.parent.user;
+    var first_name;
+    var last_name;
+    var pic_url;
+    var start_time;
+    var end_time;
     if (tour_checkin) {
         pg.connect(pgconnstring, function (err, client, done) {
             if (err) {
