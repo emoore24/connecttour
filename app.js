@@ -28,7 +28,7 @@ var story = sql.define({
     
 var college = sql.define({
     name: 'Colleges',
-    columns: ['college_id', 'name']
+    columns: ['college_id', 'name', 'latitude', 'longitude']
 }); 
     
 var tour = sql.define({
@@ -228,14 +228,14 @@ app.post('/main', function(req, res) {
             module.college_checkin = true;
             module.current_college = select_school
           }
-          if (select_school === 'Harvard') {
+          if (select_school == 'Harvard') {
             console.log(select_tour_guide_harvard);
             select_tour_guide = select_tour_guide_harvard;
           }
           else if (select_school == 'MIT') {
             select_tour_guide = select_tour_guide_mit;
           }
-          else if (select_school != 'BostonUniversity')  {
+          else if (select_school == 'BostonUniversity')  {
             select_tour_guide = select_tour_guide_bu;
           }
           var guide_query = user

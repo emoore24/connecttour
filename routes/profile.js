@@ -3,6 +3,9 @@
  */
 
 exports.show = function (req, res) {
+    var pg = module.parent.pg;
+    var pgconnstring = module.parent.pgconnstring;
+    var user = module.parent.user;
     pg.connect(pgconnstring, function (err, client, done) {
     if (err) {
         // error!
@@ -13,7 +16,7 @@ exports.show = function (req, res) {
         .select(user.star())
         .from(user)
         .where(
-            user.id.equals(req.param.id)
+            user.user_id.equals(req.params.id)
         ).toQuery();
         client.query(query, function (err, result) {
             if (err) {
@@ -22,7 +25,7 @@ exports.show = function (req, res) {
            } else {
                var template_engine = req.app.settings.template_engine;
 	           res.locals.session = req.session;
-               res.render('/profile', {'user': result.rows[0]});
+               res.render('profile', {'user': result.rows[0]});
            }
            done();
        });
