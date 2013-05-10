@@ -69,7 +69,7 @@ exports.show = function(req, res){
                 }
                 console.log("userlist: " + userlist);
                 for (var x in storylist) {
-                  console.log("storylist: " + x);
+                  console.log("storylist: " + storylist[x]);
                 }
                 var template_engine = req.app.settings.template_engine;
                 res.locals.session = req.session;
