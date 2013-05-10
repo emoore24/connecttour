@@ -33,9 +33,10 @@ exports.show = function(req, res){
 
                 // node-sql doesn't have good support for timestamp.
                 var event_query =
-          "select * from 'Events' where ((college_id = " + current_college_id + ")
-             and ((date_trunc('day',start_time), interval '1 days') overlaps
-                  (date_trunc('day', DATE '" + req.params.date + "'), interval '1 days')));"
+          "SELECT * FROM \"Events\" WHERE ((college_id = " + current_college_id + ")
+             AND ((date_trunc('day',start_time), interval '1 days') OVERLAPS
+                  (date_trunc('day', DATE '" + req.params.date + "'), interval '1 days')))
+             ORDER BY start_time;"
 
 	            console.log(event_query);
 
