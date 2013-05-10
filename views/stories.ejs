@@ -9,6 +9,11 @@
   <link rel="stylesheet" href="/stylesheets/master.css" />
   <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
   <script src="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      $.mobile.ajaxEnabled = false;
+    });
+  </script>
 </head>
 
 <body>
@@ -16,7 +21,7 @@
   <div data-role="header" data-theme="b">
     <a href="#" data-rel="back" data-icon="back">Back</a>
     <h1>Stories</h1>
-    <a id="home" href="#" data-icon="home">Home</a>
+    <a id="home" href="/main" data-icon="home">Home</a>
   </div>
   <div data-role="content">
     <ul data-role="listview" data-filter="true" data-filter-placeholder="Search stories..." data-inset="false">
