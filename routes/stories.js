@@ -43,21 +43,7 @@ exports.show = function(req, res){
 	                } else {
 	                	console.log('adfsasdfsadf');
 	                    for (var row in result.rows) {
-                            var user_query = user
-                                .select(user.first_name, user.last_name)
-                                .from(user)
-                                .where(user.user_id.equals(result.rows[row].user_id))
-                                .toQuery();
-                            console.log(user_query);
-                            client.query(user_query, function (err, user_result) {
-                                if (err) {
-                                	console.log(err);
-                                } else {
-                                  console.log(user_result.rows);
-                                  userlist.push([user_result.rows[0].first_name, user_result.rows[0].last_name]);
-                                }
-                            });
-
+                            userlist.push(result.rows[row].user_id);
 	                    	storylist.push([row.user_id, row.college_id,
                                             row.story_text]);
 	                    }
@@ -66,12 +52,26 @@ exports.show = function(req, res){
 						res.locals.session = req.session;
 					    res.render('stories', { storylist: storylist, userlist: userlist});
 	                }
-	                done();
 	            });
+                for (var i = 0; i < userlist.length; i++) {
+                    var user_query = user
+                        .select(user.first_name, user.last_name)
+                        .from(user)
+                        .where(user.user_id.equals(userlist[i]))
+                        .toQuery();
+                    console.log(user_query);
+                    client.query(user_query, function (err, user_result) {
+                        if (err) {
+                          console.log(err);
+                        } else {
+                          console.log(user_result.rows);
+                          userlist[i] = [user_result.rows[0].first_name, user_result.rows[0].last_name];
+                        }
+                    });
+                }
 	        }
-	    })
+	    });
 	} else {
 		res.redirect('/checkin');
 	}
-	
 };
