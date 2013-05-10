@@ -1,8 +1,20 @@
 var storylist = [];
 var userlist  = [];
 
+college_name_to_id = function(college_name) {
+  if (college_name == "MIT") {
+    return 1;
+  } else if (college_name == "BostonUniversity") {
+    return 2;
+  } else if (college_name == "Harvard") {
+    return 3;
+  }
+};
+
 exports.show = function(req, res){
     var college_checkin = module.parent.college_checkin;
+    var current_college = module.parent.current_college;
+    var current_college_id = college_name_to_id(current_college);
     var story = module.parent.story;
     var user = module.parent.user;
 	if (college_checkin) {
@@ -16,6 +28,7 @@ exports.show = function(req, res){
 	        	var story_query = story
 	        		.select(story.user_id, story.college_id, story.story_text)
 	        		.from(story)
+                    .where(story.college_id == current_college_id)
 	        		.toQuery();
 
 	            console.log(story_query);
