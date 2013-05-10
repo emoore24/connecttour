@@ -1,4 +1,5 @@
 var storylist = [];
+var uidlist   = [];
 var userlist  = [];
 
 college_name_to_id = function(college_name) {
@@ -43,26 +44,26 @@ exports.show = function(req, res){
 	                } else {
 	                	console.log('adfsasdfsadf');
 	                    for (var row in result.rows) {
-                            userlist.push(result.rows[row].user_id);
+                            uidlist.push(result.rows[row].user_id);
 	                    	storylist.push([row.user_id, row.college_id,
                                             row.story_text]);
 	                    }
 	                }
 	            });
-                for (var i = 0; i < userlist.length; i++) {
+                for (var i = 0; i < uidlist.length; i++) {
 //                     var user_query = user
 //                         .select(user.first_name, user.last_name)
 //                         .from(user)
 //                         .where(user.user_id.equals(userlist[i]))
 //                         .toQuery();
-                    var user_query = "select first_name, last_name from \"Users\" where user_id = " + userlist[i] + ";"
+                    var user_query = "select first_name, last_name from \"Users\" where user_id = " + uidlist[i] + ";"
 //                   console.log(user_query);
                     client.query(user_query, function (err, user_result) {
                         if (err) {
                           console.log(err);
                         } else {
                           console.log(user_result.rows);
-                          userlist[i] = [user_result.rows[0].first_name, user_result.rows[0].last_name];
+                          userlist.push([user_result.rows[0].first_name, user_result.rows[0].last_name]);
                         }
                     });
                 }
