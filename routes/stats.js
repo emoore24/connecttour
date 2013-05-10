@@ -37,7 +37,7 @@ exports.show = function(req, res){
 
 	            console.log(faqs_query);
 
-	            client.query(faqs_query, [], function (err, result) {
+	            client.query(faqs_query, function (err, result) {
 	                if (err) {
 	                    // error!
 	                    console.log(err)
@@ -51,7 +51,7 @@ exports.show = function(req, res){
 	                    }
 	                    var template_engine = req.app.settings.template_engine;
 						res.locals.session = req.session;
-					    res.render('stats', {faqs: faqs});
+					    res.render('stats', {'faqs': faqs});
 	                }
 	                done();
 	            });
@@ -61,5 +61,6 @@ exports.show = function(req, res){
 		res.redirect('/checkin');
 	}
 	console.log('ok so far');
+	
 	
 };

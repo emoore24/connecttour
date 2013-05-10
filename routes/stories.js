@@ -13,16 +13,17 @@ college_name_to_id = function(college_name) {
 
 exports.show = function(req, res){
 	var pg = module.parent.pg;
-	var pgconnstring = module.parent.pg;
+	var pgconnstring = module.parent.pgconnstring;
     var college_checkin = module.parent.college_checkin;
     var current_college = module.parent.current_college;
     var current_college_id = college_name_to_id(current_college);
     var story = module.parent.story;
     var user = module.parent.user;
 	if (college_checkin) {
-	    pg.connect(pgconnstring, function (err, client, done) {
+	    pg.connect(pgconnstring, function(err, client, done) {
 	        if (err) {
 	            // error!
+	            console.log('WHAT');
 	            console.log(err);
 	            done();
 	        } else {
@@ -30,31 +31,38 @@ exports.show = function(req, res){
 	        	var story_query = story
 	        		.select(story.user_id, story.college_id, story.story_text)
 	        		.from(story)
-                    .where(story.college_id == current_college_id)
+                    .where(story.college_id.equals(current_college_id))
 	        		.toQuery();
 
 	            console.log(story_query);
 
-	            client.query(story_query, [], function (err, result) {
+	            client.query(story_query, function (err, result) {
 	                if (err) {
 	                    // error!
+	                    console.log(err);
 	                } else {
+	                	console.log('adfsasdfsadf');
 	                    for (var row in result.rows) {
                             var user_query = user
                                 .select(user.first_name, user.last_name)
                                 .from(user)
-                                .where(user.user_id == row.user_id)
+                                .where(user.user_id.equals(result.rows[row].user_id))
                                 .toQuery();
-                            client.query(user_query, [], function (err, result) {
+                            console.log(user_query);
+                            client.query(user_query, function (err, user_result) {
                                 if (err) {
+                                	console.log(err);
                                 } else {
-                                  userlist.push([row.first_name, row.last_name]);
+                                  console.log(user_result.rows);
+                                  userlist.push([user_result.rows[0].first_name, user_result.rows[0].last_name]);
+                                  
                                 }
                             });
 
 	                    	storylist.push([row.user_id, row.college_id,
                                             row.story_text]);
 	                    }
+	                    console.log(userlist);
 	                }
 	                done();
 	            });
@@ -63,7 +71,5 @@ exports.show = function(req, res){
 	} else {
 		res.redirect('/checkin');
 	}
-	var template_engine = req.app.settings.template_engine;
-	res.locals.session = req.session;
-    res.render('stories', { storylist: storylist, userlist: userlist});
+	
 };
