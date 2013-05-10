@@ -42,25 +42,15 @@ exports.show = function(req, res){
 	                    // error!
 	                    console.log(err);
 	                } else {
-	                	console.log('adfsasdfsadf');
 	                    for (var row in result.rows) {
                             uidlist.push(result.rows[row].user_id);
 	                    	storylist.push([result.rows[row].user_id,
                                             result.rows[row].college_id,
                                             result.rows[row].story_text]);
 	                    }
-	                    console.log(userlist);
-	                    var template_engine = req.app.settings.template_engine;
-						res.locals.session = req.session;
-					    res.render('stories', { storylist: storylist, userlist: userlist});
 	                }
 	            });
                 for (var i = 0; i < uidlist.length; i++) {
-//                     var user_query = user
-//                         .select(user.first_name, user.last_name)
-//                         .from(user)
-//                         .where(user.user_id.equals(userlist[i]))
-//                         .toQuery();
                     var user_query = "select first_name, last_name from \"Users\" where user_id = " + uidlist[i] + ";"
                     console.log(user_query);
                     client.query(user_query, function (err, user_result) {
@@ -72,6 +62,10 @@ exports.show = function(req, res){
                         }
                     });
                 }
+                console.log(userlist);
+                var template_engine = req.app.settings.template_engine;
+                res.locals.session = req.session;
+                res.render('stories', { 'storylist': storylist, 'userlist': userlist});
 	        }
 	    });
 	} else {
