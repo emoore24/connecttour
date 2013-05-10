@@ -57,7 +57,7 @@ exports.show = function(req, res){
 //                         .where(user.user_id.equals(userlist[i]))
 //                         .toQuery();
                     var user_query = "select first_name, last_name from \"Users\" where user_id = " + uidlist[i] + ";"
-//                   console.log(user_query);
+                    console.log(user_query);
                     client.query(user_query, function (err, user_result) {
                         if (err) {
                           console.log(err);
@@ -67,7 +67,7 @@ exports.show = function(req, res){
                         }
                     });
                 }
-                console.log(userlist);
+                console.log("userlist: " + userlist);
                 var template_engine = req.app.settings.template_engine;
                 res.locals.session = req.session;
                 res.render('stories', { storylist: storylist, userlist: userlist});
