@@ -68,6 +68,7 @@ exports.show = function(req, res){
                     });
                 }
                 console.log("userlist: " + userlist);
+                console.log("storylist: " + userlist);
                 var template_engine = req.app.settings.template_engine;
                 res.locals.session = req.session;
                 res.render('stories', { 'storylist': storylist, 'userlist': userlist});
