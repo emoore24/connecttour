@@ -233,7 +233,7 @@ app.post('/main', function(req, res) {
             if (typeof(select_tour_guide_harvard) != undefined) {
               select_tour_guide = select_tour_guide_harvard;
             }
-            else if (typeof(select_tour_guide_mit!= undefined) {
+            else if (typeof(select_tour_guide_mit) != undefined) {
               select_tour_guide = select_tour_guide_mit;
             }
             else if (typeof(select_tour_guide_bu) != undefined)  {
