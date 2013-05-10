@@ -87,7 +87,8 @@ var express = require('express')
   , question = require('./routes/question_queue')
   , feedback = require('./routes/tour_feedback')
   , checkin  = require('./routes/checkin')
-  , stats    = require('./routes/stats');
+  , stats    = require('./routes/stats')
+  , qq       = [];
 
 var app = express();
 
@@ -144,8 +145,29 @@ app.get('/checkin', checkin.show);
 
 app.use(express.static(__dirname + '/public'));
 
-http.createServer(app).listen(app.get('port'), function(){
+var server = http.createServer(app);
+
+server.listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
+});
+
+var io = require('socket.io').listen(server);
+module.io = io;
+
+var num_ppl = 0;
+io.sockets.on('connection', function (socket) {
+    num_ppl++;
+    io.sockets.emit('number of visitors', num_ppl);
+    socket.on('disconnect', function () {
+        num_ppl-=1;
+        socket.broadcast.emit('number of visitors', num_ppl);
+    });
+    
+    socket.on('new_question', function(msg) {
+        qq.push(msg);
+        socket.broadcast.emit('new_q', qq);
+        socket.emit('ack');
+    });
 });
 
 /*pg.connect(pgconnstring, function (err, client, done) {
