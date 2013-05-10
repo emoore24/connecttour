@@ -52,11 +52,10 @@ var feedback = sql.define({
 });
 
 
-var connectstring = "postgres://shcpmwtwyxuxax:IFYCad_h0oQi_YAvjercNOIsto@ec2-54-235-152-226.compute-1.amazonaws.com:5432/dfu6b4s2s6n3v1";
-var pgconnstring  = "postgres://shcpmwtwyxuxax:IFYCad_h0oQi_YAvjercNOIsto@ec2-54-235-152-226.compute-1.amazonaws.com:5432/dfu6b4s2s6n3v1";
+var connectstring = "postgres://shcpmwtwyxuxax:IFYCad_h0oQi_YAvjercNOIsto@ec2-54-235-152-226.compute-1.amazonaws.com:5432/dfu6b4s2s6n3v1?ssl=true";
+var pgconnstring  = "postgres://shcpmwtwyxuxax:IFYCad_h0oQi_YAvjercNOIsto@ec2-54-235-152-226.compute-1.amazonaws.com:5432/dfu6b4s2s6n3v1?ssl=true";
 
-var tour_checkin = false, college_checkin = false, current_tour, current_guide, current_college;
-
+var tour_checkin = false, college_checkin = false, current_tour, current_guide, current_college, current_tour;
 
 module.user     = user;
 module.story    = story;
@@ -72,6 +71,7 @@ module.tour_checkin    = tour_checkin;
 module.college_checkin = college_checkin;
 module.current_college = current_college;
 module.current_guide = current_guide;
+module.current_tour = current_tour;
 
 
 
@@ -215,48 +215,67 @@ app.post('/confirm', function(req, res){ // Specifies which URL to listen for
 });
 
 app.post('/main', function(req, res) {
+    var select_tour_guide_harvard= req.body.select_tour_guide_harvard
+      , select_tour_guide_mit = req.body.select_tour_guide_mit
+      , select_tour_guide_bu = req.body.select_tour_guide_bu;
     console.log("CHECKIN");
-    console.log(req.body.select_college);
-    console.log(req.body.select_tour_guide_mit);
     pg.connect(pgconnstring, function(err, client, done) {
-        console.log(2);
         if (err) {
           console.log(err);
         } else {
-          console.log(3);
-          var select_college = req.body.select_college;
+          var select_school = req.body.select_school;
           var select_tour_guide = req.body.select_tour_guide;
-          if (select_college) {
+          if (select_school) {
             module.college_checkin = true;
-            module.current_college = select_college
+            module.current_college = select_school
           }
-          if (select_tour_guide_mit || select_tour_guide_bu || select_tour_guide_harvard) {
-            if (select_tour_guide_harvard) {
-              select_tour_guide = select_tour_guide_harvard;
-            }
-            else if (select_tour_guide_mit) {
-              select_tour_guide = select_tour_guide_mit;
-            }
-            else if (select_tour_guide_bu) {
-              select_tour_guide = select_tour_guide_bu;
-            }
-            var guide_query = user
-              .select(user.star())
-              .from(user)
-              .where(
-                user.first_name = select_tour_guide
-              ).toQuery();
-            client.query(guide_query, function(err, result) {
-              if (err) {
-                console.log(err);
-              } else {
-                if (result.row.length > 0) {
-                  module.tour_checkin = true;
-                  module.current_guide = result.row[0];
-                }
+          if (select_school === 'Harvard') {
+            console.log(select_tour_guide_harvard);
+            select_tour_guide = select_tour_guide_harvard;
+          }
+          else if (select_school == 'MIT') {
+            select_tour_guide = select_tour_guide_mit;
+          }
+          else if (select_school != 'BostonUniversity')  {
+            select_tour_guide = select_tour_guide_bu;
+          }
+          var guide_query = user
+            .select(user.star())
+            .from(user)
+            .where(
+              user.first_name.equals(select_tour_guide)
+            ).toQuery();
+          client.query(guide_query, function(err, result) {
+            if (err) {
+              console.log(err);
+            } else {
+              // console.log(result);
+              if (result.rows.length > 0) {
+                module.tour_checkin = true;
+                module.current_guide = result.rows[0];
+                var tour_query = tour.
+                  select(tour.star())
+                  .from(tour)
+                  .where(
+                    tour.user_id.equals(module.current_guide.user_id)
+                  ).toQuery();
+                client.query(tour_query, function(err, tour_result) {
+                  if (err) {
+                    console.log(err);
+                  } else {
+                    console.log('BOO');
+                    console.log(tour_result);
+                    if (tour_result.rows.length > 0) {
+                      module.current_tour = tour_result.rows[0];
+                      res.redirect('main');
+                    }
+                  }
+                });
+                
               }
-            })  
-          } 
+            }
+          });  
         };
     })
+    //res.redirect('main');
 });
