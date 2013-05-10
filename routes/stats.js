@@ -1,7 +1,7 @@
 
 console.log("MAIN");
 
-var faqs = []
+var faqs = [];
 
 
 exports.show = function(req, res){
@@ -37,11 +37,12 @@ exports.show = function(req, res){
 	                done();
 	            });
 	        }
-	    })
+	    });
 	} else {
 		res.redirect('/checkin');
 	}
+	console.log('ok so far');
 	var template_engine = req.app.settings.template_engine;
 	res.locals.session = req.session;
-    res.render('stats', {'faqs': faqs});
+    res.render('stats', {faqs: faqs});
 };
