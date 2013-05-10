@@ -1,9 +1,54 @@
-/*
- * GET home page.
- */
+var storylist = [];
+var userlist  = [];
 
 exports.show = function(req, res){
+    var college_checkin = module.parent.college_checkin;
+    var story = module.parent.story;
+    var user = module.parent.user;
+	if (college_checkin) {
+	    pg.connect(pgconnstring, function (err, client, done) {
+	        if (err) {
+	            // error!
+	            console.log(err);
+	            done();
+	        } else {
+
+	        	var story_query = story
+	        		.select(story.user_id, story.college_id, story.story_text)
+	        		.from(story)
+	        		.toQuery();
+
+	            console.log(story_query);
+
+	            client.query(story_query, [], function (err, result) {
+	                if (err) {
+	                    // error!
+	                } else {
+	                    for (var row in result.rows) {
+                            var user_query = user
+                                .select(user.first_name, user.last_name)
+                                .from(user)
+                                .where(user.user_id == row.user_id)
+                                .toQuery();
+                            client.query(user_query, [], function (err, result) {
+                                if (err) {
+                                } else {
+                                  userlist.push([row.first_name, row.last_name]);
+                                }
+                            });
+
+	                    	storylist.push([row.user_id, row.college_id,
+                                            row.story_text]);
+	                    }
+	                }
+	                done();
+	            });
+	        }
+	    })
+	} else {
+		res.redirect('/checkin');
+	}
 	var template_engine = req.app.settings.template_engine;
 	res.locals.session = req.session;
-    res.render('stories');
+    res.render('stories', { storylist: storylist, userlist: userlist});
 };

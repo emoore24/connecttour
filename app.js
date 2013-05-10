@@ -53,6 +53,7 @@ var feedback = sql.define({
 
 
 var connectstring = "postgres://shcpmwtwyxuxax:IFYCad_h0oQi_YAvjercNOIsto@ec2-54-235-152-226.compute-1.amazonaws.com:5432/dfu6b4s2s6n3v1";
+var pgconnstring  = "postgres://shcpmwtwyxuxax:IFYCad_h0oQi_YAvjercNOIsto@ec2-54-235-152-226.compute-1.amazonaws.com:5432/dfu6b4s2s6n3v1";
 
 var tour_checkin = false, college_checkin = false, current_tour, current_guide, current_college;
 
@@ -66,6 +67,7 @@ module.faq      = faq;
 module.feedback = feedback;
 
 module.connectstring   = connectstring;
+module.pgconnstring    = connectstring;
 module.tour_checkin    = tour_checkin;
 module.college_checkin = college_checkin;
 module.current_college = current_college;
@@ -132,7 +134,6 @@ app.configure('development', function(){
 app.locals.inspect = require('util').inspect;
 app.get('/', checkin.show);
 app.get('/main', main.show);
-app.post('/main', main.show);
 app.get('/stats', stats.show);
 app.get('/map', map.show);
 app.get('/events', events.show);
@@ -217,9 +218,11 @@ app.post('/main', function(req, res) {
     console.log(req.body.select_college);
     console.log(req.body.select_tour_guide_mit);
     pg.connect(pgconnstring, function(err, client, done) {
+        console.log(2);
         if (err) {
           console.log(err);
-        }else {
+        } else {
+          console.log(3);
           var select_college = req.body.select_college;
           var select_tour_guide = req.body.select_tour_guide;
           if (select_college) {
