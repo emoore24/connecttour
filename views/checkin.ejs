@@ -12,12 +12,17 @@
   <!--
   <link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.css" />
   -->
+  <script>
+    $(document).ready(function () {
+      $.mobile.ajaxEnabled = false;
+    });
+  </script>
 </head>
 
 <body>
 <div data-role="page" data-theme="a">
   <div data-role="header" data-theme="b">
-    <h1 class="sanford">ConnecTour</h1>
+    <h1 class="sanford">Checkin</h1>
   </div>
   <div data-role="content" data-theme="a" >
     <form id="checkin" name="checkin" action="/main" method="post">
