@@ -23,9 +23,7 @@
       <% for (var i=0; i<storylist.length; i++) { %>
       <li>
       <a href="/profile/<%= storylist[i][0] %>">
-        <!--
-        <h2><%= //userlist[i][0] %> <%= //userlist[i][1] %></h2>
-        -->
+        <h2><%= userlist[i][0] %> <%= userlist[i][1] %></h2>
         <p>
           <img class="ui-li-thumb event_image" src="/images/story_<%= storylist[i][0] %>.jpg" />
           <%= storylist[i][2] %>
