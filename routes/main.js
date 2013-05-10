@@ -7,8 +7,10 @@ console.log("MAIN");
 
 
 exports.show = function(req, res){
+    var pg = module.parent.pg;
     var tour_checkin = module.parent.tour_checkin;
     var user = module.parent.user;
+    var pgconnstring = module.parent.pgconnstring;
     var first_name;
     var last_name;
     var pic_url;
@@ -22,12 +24,7 @@ exports.show = function(req, res){
                 done();
             } else {
 
-                var time_query = tour
-                    .select(tour.start_time, tour.end_time)
-                    .from(tour)
-                    .where(
-                        tour.tour_id.equals(current_tour)
-                    ).toQuery();
+                var time_query = tour.select(tour.start_time, tour.end_time).from(tour).where(tour.tour_id.equals(current_tour)).toQuery();
 
                 console.log(time_query);
 
