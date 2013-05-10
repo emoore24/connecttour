@@ -16,6 +16,10 @@ exports.show = function(req, res){
     var current_college_id = college_name_to_id(current_college);
     var event = module.parent.event;
     var user = module.parent.user;
+    var pg = module.parent.pg;
+    var pgconnstring = module.parent.pgconnstring;
+    console.log(req.params.date);
+    console.log(req.params);
 
 	if (college_checkin) {
 	    pg.connect(pgconnstring, function (err, client, done) {
@@ -32,15 +36,14 @@ exports.show = function(req, res){
 //                    .toQuery();
 
                 // node-sql doesn't have good support for timestamp.
-                var event_query =
-          "SELECT * FROM \"Events\" WHERE ((college_id = " + current_college_id + ")
-             AND ((date_trunc('day',start_time), interval '1 days') OVERLAPS
-                  (date_trunc('day', DATE '" + req.params.date + "'), interval '1 days')))
-             ORDER BY start_time;"
+                var event_query = "SELECT * FROM \"Events\" WHERE ((college_id = $1) AND ((date_trunc('day', start_time), interval '1 days')OVERLAPS(date_trunc('day', TIMESTAMP $2), interval '1 days'))) ORDER BY start_time;"
+        //         var event_query ="SELECT * FROM Events WHERE ((college_id = $1) AND ((date_trunc('day',start_time), interval '1 days') OVERLAPS
+        //         		(date_trunc('day', DATE '$2'), interval '1 days')))
+	    			// ORDER BY start_time;";
 
 	            console.log(event_query);
 
-	            client.query(event_query, [], function (err, result) {
+	            client.query(event_query, [current_college_id, req.params.date], function (err, result) {
 	                if (err) {
 	                    // error!
                         console.log(err);
@@ -51,6 +54,9 @@ exports.show = function(req, res){
                                             row.start_time, row.end_time,
                                             row.description, row.image_logo_file]);
 	                    }
+	                    var template_engine = req.app.settings.template_engine;
+						res.locals.session = req.session;
+					    res.render('events', { date: req.params.date });
 	                }
 	                done();
 	            });
@@ -59,7 +65,5 @@ exports.show = function(req, res){
 	} else {
 		res.redirect('/checkin');
 	}
-	var template_engine = req.app.settings.template_engine;
-	res.locals.session = req.session;
-    res.render('events', { date: req.params.date });
+	
 };

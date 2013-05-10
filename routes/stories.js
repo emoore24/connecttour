@@ -12,6 +12,8 @@ college_name_to_id = function(college_name) {
 };
 
 exports.show = function(req, res){
+	var pg = module.parent.pg;
+	var pgconnstring = module.parent.pg;
     var college_checkin = module.parent.college_checkin;
     var current_college = module.parent.current_college;
     var current_college_id = college_name_to_id(current_college);
