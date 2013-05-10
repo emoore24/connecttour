@@ -49,6 +49,10 @@ exports.show = function(req, res){
                                             result.rows[row].college_id,
                                             result.rows[row].story_text]);
 	                    }
+	                    console.log(userlist);
+	                    var template_engine = req.app.settings.template_engine;
+						res.locals.session = req.session;
+					    res.render('stories', { storylist: storylist, userlist: userlist});
 	                }
 	            });
                 for (var i = 0; i < uidlist.length; i++) {
@@ -68,14 +72,6 @@ exports.show = function(req, res){
                         }
                     });
                 }
-                console.log("userlist: " + userlist);
-                for (var x in storylist) {
-                  console.log("storylist: " + storylist[x]);
-                }
-                var template_engine = req.app.settings.template_engine;
-                res.locals.session = req.session;
-                res.render('stories', { 'storylist': storylist, 'userlist': userlist});
-                done();
 	        }
 	    });
 	} else {

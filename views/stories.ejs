@@ -22,10 +22,11 @@
     <ul data-role="listview" data-filter="true" data-filter-placeholder="Search stories..." data-inset="false">
       <% for (var i=0; i<storylist.length; i++) { %>
       <li>
-      <a href="/profile/<%= storylist[i][0] %>">
+      <a href="/profile/<%= storylist[i].user_id %>">
+        <h2><%= userlist[i][0] %> <%= userlist[i][1] %></h2>
         <p>
-          <img class="ui-li-thumb event_image" src="/images/story_<%= storylist[i][0] %>.jpg" />
-          <%= storylist[i][2] %>
+          <img class="ui-li-thumb event_image" src="/images/story_<%= storylist[i].user_id %>.jpg" />
+          <%= storylist[i][4] %>
         </p>
       </a>
       </li>
