@@ -14,6 +14,10 @@ body {
   line-height: 120%;
 }
 
+.ui-btn-text {
+    font-family: Helvetica, sans-serif !important;
+}
+
 .event_image {
   position: relative;
 }
@@ -26,7 +30,17 @@ body {
 }
 
 .sanford {
-	font-family: 'sanford', serif;	
+	font-family: Helvetica, serif;	
+}
+
+
+
+h1, h2, h3, h4 {
+    font-family: Helvetica, serif;	
+}
+
+.font_helvetica {
+    font-family: Helvetica, serif;   
 }
 
 .lobster-two {
@@ -136,26 +150,26 @@ div.bigstars {
 }
 
 div.bigstars div.rateit-range {
-	background: url(../images/star-white32.png);
+	background: url(../star-white32.png);
 	height: 32px;
 }
 
 div.bigstars div.rateit-hover {
-    background: url(../images/star-gold32.png);
+    background: url(../star-gold32.png);
 }
  
 div.bigstars div.rateit-selected {
-    background: url(../images/star-red32.png);
+    background: url(../star-red32.png);
 }
  
 div.bigstars div.rateit-reset {
-    background: url(../images/star-black32.png);
+    background: url(../star-black32.png);
     width: 32px;
     height: 32px;
 }
  
 div.bigstars div.rateit-reset:hover {
-    background: url(../images/star-white32.png);
+    background: url(../star-white32.png);
 }
 
 input.ui-slider-input {
