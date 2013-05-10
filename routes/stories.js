@@ -50,12 +50,13 @@ exports.show = function(req, res){
 	                }
 	            });
                 for (var i = 0; i < userlist.length; i++) {
-                    var user_query = user
-                        .select(user.first_name, user.last_name)
-                        .from(user)
-                        .where(user.user_id.equals(userlist[i]))
-                        .toQuery();
-                    console.log(user_query);
+//                     var user_query = user
+//                         .select(user.first_name, user.last_name)
+//                         .from(user)
+//                         .where(user.user_id.equals(userlist[i]))
+//                         .toQuery();
+                    var user_query = "select first_name, last_name from \"Users\" where user_id = " + userlist[i] + ";"
+//                   console.log(user_query);
                     client.query(user_query, function (err, user_result) {
                         if (err) {
                           console.log(err);
