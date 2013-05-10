@@ -232,7 +232,7 @@ app.post('/main', function(req, res) {
           if (select_tour_guide_mit != undefined || select_tour_guide_bu != undefined || select_tour_guide_harvard != undefined) {
             if (select_tour_guide_harvard) {
               select_tour_guide = select_tour_guide_harvard;
-            
+            }
             else if (select_tour_guide_mit) {
               select_tour_guide = select_tour_guide_mit;
             }
