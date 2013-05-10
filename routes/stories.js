@@ -55,7 +55,6 @@ exports.show = function(req, res){
                                 } else {
                                   console.log(user_result.rows);
                                   userlist.push([user_result.rows[0].first_name, user_result.rows[0].last_name]);
-                                  
                                 }
                             });
 
@@ -63,6 +62,9 @@ exports.show = function(req, res){
                                             row.story_text]);
 	                    }
 	                    console.log(userlist);
+	                    var template_engine = req.app.settings.template_engine;
+						res.locals.session = req.session;
+					    res.render('stories', { storylist: storylist, userlist: userlist});
 	                }
 	                done();
 	            });
