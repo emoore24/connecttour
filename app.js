@@ -230,13 +230,13 @@ app.post('/main', function(req, res) {
             module.current_college = select_college
           }
           if (typeof(select_tour_guide_mit) != undefined || typeof(select_tour_guide_bu)!= undefined || typeof(select_tour_guide_harvard)!= undefined) {
-            if (select_tour_guide_harvard) {
+            if (typeof(select_tour_guide_harvard) != undefined) {
               select_tour_guide = select_tour_guide_harvard;
             }
-            else if (select_tour_guide_mit) {
+            else if (typeof(select_tour_guide_mit!= undefined) {
               select_tour_guide = select_tour_guide_mit;
             }
-            else if (select_tour_guide_bu) {
+            else if (typeof(select_tour_guide_bu) != undefined)  {
               select_tour_guide = select_tour_guide_bu;
             }
             var guide_query = user
