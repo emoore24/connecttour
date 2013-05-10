@@ -229,7 +229,7 @@ app.post('/main', function(req, res) {
             module.college_checkin = true;
             module.current_college = select_college
           }
-          if (select_tour_guide_mit != undefined || select_tour_guide_bu != undefined || select_tour_guide_harvard != undefined) {
+          if (typeof(select_tour_guide_mit) != undefined || typeof(select_tour_guide_bu)!= undefined || typeof(select_tour_guide_harvard)!= undefined) {
             if (select_tour_guide_harvard) {
               select_tour_guide = select_tour_guide_harvard;
             }
