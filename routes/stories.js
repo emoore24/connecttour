@@ -1,6 +1,6 @@
 var storylist = [];
 var uidlist   = [];
-var userlist  = [];
+var userlist  = {};
 
 college_name_to_id = function(college_name) {
   if (college_name == "MIT") {
@@ -63,7 +63,7 @@ exports.show = function(req, res){
                           console.log(err);
                         } else {
                           console.log(user_result.rows);
-                          userlist.push([user_result.rows[0].first_name, user_result.rows[0].last_name]);
+                          userlist[uidlist] = [user_result.rows[0].first_name, user_result.rows[0].last_name];
                         }
                     });
                 }
