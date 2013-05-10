@@ -29,6 +29,14 @@ body {
 	font-family: 'sanford', serif;	
 }
 
+h1, h2, h3, h4 {
+    font-family: Helvetica, sans-serif;
+}
+
+.font_helvetica {
+    font-family: Helvetica, sans-serif;
+}
+
 .lobster-two {
 	font-family: "Lobster Two", Lucida Console, serif;
 }
@@ -50,6 +58,7 @@ body {
 
 .menu-explanation {
 	/*color: #eeeeee;*/
+    font-family: Helvetica, sans-serif;
 }
 
 #menu-list {

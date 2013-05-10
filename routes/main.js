@@ -14,6 +14,7 @@ exports.show = function(req, res){
     var pic_url;
     var start_time;
     var end_time;
+    console.log(tour_checkin);
     if (tour_checkin) {
         pg.connect(pgconnstring, function (err, client, done) {
             if (err) {
