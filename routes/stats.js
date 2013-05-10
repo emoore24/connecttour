@@ -47,7 +47,7 @@ exports.show = function(req, res){
 	                } else {
 	                    console.log(result.rows);
 	                    for (var row in result.rows) {
-	                    	faqs.push([row.question, row.answer]);
+	                    	faqs.push([result.rows[row].question, result.rows[row].answer]);
 	                    }
 	                    var template_engine = req.app.settings.template_engine;
 						res.locals.session = req.session;
