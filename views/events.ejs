@@ -14,7 +14,7 @@
       $.mobile.ajaxEnabled = false;
       $("#home").click(function(){
         window.location.href = "main_checkin.html";
-      })
+      });
     });
   </script>
   <style>
@@ -35,17 +35,17 @@
     <a id="home" href="#" data-icon="home">Home</a>
   </div>
 
-  <% var d = new Date(date); %>
+  <% var d = new Date(date) %>
   <% var millisec_in_day = 1000*60*60*24; %>
-  <% var yesterday = new Date(d.getTime() - millisec_in_day);%>
-  <% var tomorrow  = new Date(d.getTime() + millisec_in_day);%>
+  <% var yesterday = new Date(d.getTime() - millisec_in_day)%>
+  <% var tomorrow  = new Date(d.getTime() + millisec_in_day)%>
 
   <fieldset class="ui-grid-a">
     <div class="ui-block-a">
-      <a href="/events/<%= yesterday.toISOString().slice(0,10); %>" data-role="button" data-mini="true" data-icon="arrow-l" data-iconpos="left">Prev</a>
+      <a href="/events/<%= yesterday.toISOString().slice(0,10) %>" data-role="button" data-mini="true" data-icon="arrow-l" data-iconpos="left">Prev</a>
     </div>
     <div class="ui-block-b">
-      <a href="/events/<%= tomorrow.toISOString().slice(0,10); %>" data-role="button" data-mini="true" data-icon="arrow-r" data-iconpos="right">Next</a>
+      <a href="/events/<%= tomorrow.toISOString().slice(0,10) %>" data-role="button" data-mini="true" data-icon="arrow-r" data-iconpos="right">Next</a>
     </div>
   </fieldset>
   <div data-role="content" data-theme="a" >
@@ -56,9 +56,9 @@
         <li>
             <!-- Figure out how date objects are passed and then do this. -->
             <p><strong>11:00</strong>AM - <strong>6:00</strong>PM</p>
-            <p><strong><%= eventlist[i].group_name %></strong></p>
-            <p><img class="ui-li-thumb event_image" src="/images/<%= eventlist[i].image_logo_file %>" />
-            <%= eventlist[i].description %>
+            <p><strong><%= eventlist[i][2] %></strong></p>
+            <p><img class="ui-li-thumb event_image" src="/images/<%= eventlist[i][6] %>" />
+            <%= eventlist[i][5] %>
             </p>
         </li>
         <% } %>

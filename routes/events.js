@@ -36,27 +36,31 @@ exports.show = function(req, res){
 //                    .toQuery();
 
                 // node-sql doesn't have good support for timestamp.
-                var event_query = "SELECT * FROM \"Events\" WHERE ((college_id = $1) AND ((date_trunc('day', start_time), interval '1 days')OVERLAPS(date_trunc('day', TIMESTAMP $2), interval '1 days'))) ORDER BY start_time;"
+                var test_date = '2013-06-09';
+                var event_query = "SELECT * FROM \"Events\" WHERE ((college_id = $1) AND ((date_trunc('day', start_time), interval '1 days')OVERLAPS(date_trunc('day', DATE '2013-06-09'), interval '1 days'))) ORDER BY start_time;"
         //         var event_query ="SELECT * FROM Events WHERE ((college_id = $1) AND ((date_trunc('day',start_time), interval '1 days') OVERLAPS
         //         		(date_trunc('day', DATE '$2'), interval '1 days')))
 	    			// ORDER BY start_time;";
 
 	            console.log(event_query);
 
-	            client.query(event_query, [current_college_id, req.params.date], function (err, result) {
+	            client.query(event_query, [current_college_id], function (err, result) {
 	                if (err) {
 	                    // error!
                         console.log(err);
 	                } else {
+	                	console.log('wee');
+	                	console.log(result.rows);
 	                    for (var row in result.rows) {
-	                    	eventlist.push([row.event_id, row.college_id,
-                                            row.group_name,
-                                            row.start_time, row.end_time,
-                                            row.description, row.image_logo_file]);
+	                    	console.log('boobs');
+	                    	eventlist.push([result.rows[row].event_id, result.rows[row].college_id,
+                                            result.rows[row].group_name,
+                                            result.rows[row].start_time, result.rows[row].end_time,
+                                            result.rows[row].description, result.rows[row].image_logo_file]);
 	                    }
 	                    var template_engine = req.app.settings.template_engine;
 						res.locals.session = req.session;
-					    res.render('events', { date: req.params.date });
+					    res.render('events', { 'date': test_date, 'eventlist': eventlist });
 	                }
 	                done();
 	            });
