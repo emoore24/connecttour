@@ -169,6 +169,7 @@ io.sockets.on('connection', function (socket) {
     socket.on('new_question', function(msg) {
         qq.push(msg);
         socket.broadcast.emit('new_q', qq);
+        socket.emit('new_q', qq);
         socket.emit('ack');
     });
 });

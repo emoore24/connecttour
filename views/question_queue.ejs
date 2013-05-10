@@ -64,7 +64,7 @@
 						socket.emit("new_question", entered_text);
 		                socket.on("ack", function(){
 		                	console.log('ACK');
-		                    update_queue(entered_text);
+		                    // update_queue(entered_text);
 		                    update_textbox();
 		                });
 					}
