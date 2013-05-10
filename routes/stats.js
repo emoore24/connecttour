@@ -64,3 +64,19 @@ exports.show = function(req, res){
 	
 	
 };
+
+// <!-- <div id='slider' class='swipe'>
+//         <div class='swipe-wrap'>
+//           <% for (var i = 0; i < graphs.length; i++) { %>
+//             <div><img src=<%= graphs[i] %> class='stat-graph' width="95%" height="300px" /></div>
+//           <% } %>
+//         </div>
+//       </div>
+
+//       <div id="stat-dots">
+//           <span class="dot active-dot" id="dot1"></span>
+//           <% for (var i = 1; i < graphs.length; i++) { %>
+//             <span class="dot" id=<%= "dot" + (i + 1) %></span>
+//           <% } %>
+
+//       </div> -->

@@ -12,7 +12,7 @@ var domain = 'localhost';
 //require the module
 var sql = require('sql');
 
-var pg = require('pg');
+var pg = require('pg').native;
 module.pg = pg;
 
 //defining our tables
@@ -100,7 +100,7 @@ app.configure(function(){
 
   app.set('template_engine', 'ejs');
   app.set('domain', domain);
-  app.set('port', process.env.PORT || 8000);
+  app.set('port', process.env.PORT || 8080);
   app.set('views', __dirname + '/views');
   app.set('view engine', 'ejs');
   app.use(express.favicon());

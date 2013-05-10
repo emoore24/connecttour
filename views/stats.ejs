@@ -26,19 +26,20 @@
 	</div>
     <div data-role="content" data-theme="a"> 
 
+      
+
       <div id='slider' class='swipe'>
         <div class='swipe-wrap'>
-          <% for (var i = 0; i < graphs.length; i++) { %>
-            <div><img src=<%= graphs[i] %> class='stat-graph' width="95%" height="300px" /></div>
-          <% } %>
+          <div><img src="assets/images/examples/graph1.jpg" class='stat-graph' width="95%" height="300px" /></div>
+          <div><img src="assets/images/examples/graph2.gif" class='stat-graph' width="95%" height="300px" /></div>
+          <div><img src="assets/images/examples/graph3.jpg" class='stat-graph' width="95%" height="300px" /></div>
         </div>
       </div>
 
       <div id="stat-dots">
           <span class="dot active-dot" id="dot1"></span>
-          <% for (var i = 1; i < graphs.length; i++) { %>
-            <span class="dot" id=<%= "dot" + (i + 1) %></span>
-          <% } %>
+          <span class="dot" id="dot2"></span>
+          <span class="dot" id="dot3"></span>
 
       </div>
 

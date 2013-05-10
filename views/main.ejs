@@ -4,19 +4,19 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="/stylesheets/custom-theme.css" />
-    <!--
-	<link rel="stylesheet" href="/stylesheets/jquery.mobile-1.3.1.min.css" />
-    -->
     <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Lobster+Two'  type='text/css'>
     <link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.1/jquery.mobile.structure-1.3.1.min.css" />
 	<link rel="stylesheet" href="/stylesheets/master.css" />
+	<link rel="stylesheet"  href="/stylesheets/jqm-icon-pack-3.0.0-fa.css">
 	<script src="javascripts/jquery-1.9.1.min.js"></script>
 	<script src="javascripts/jquery.mobile-1.3.1.min.js"></script>
 	<script>
 	    $(document).ready(function () {
 	      $.mobile.ajaxEnabled = false;
+	      // $('li.ui-btn-icon-right').removeClass('ui-li-has-arrow').removeClass('ui-btn-icon-right').data('data-iconpos', 'right');
+	      // $('#qq').parent().parent().parent().data('data-icon', 'question-sign');
 	    });
-	  </script>
+	</script>
 </head>
 <body>
   <div data-role="page" data-theme="a">
@@ -68,30 +68,30 @@
 	<% } %>
 	<ul data-role="listview" data-inset="true" id='menu-list'>
 			<li>
-				<a id="qq" data-icon="question-sign" data-iconpos="left" href="/question_queue">
+				<a id="qq" class='list_link' data-icon="question-sign" data-iconpos="left" href="/question_queue">
 				<h2>Question Queue</h2>
 				<p class='menu-explanation'>Ask questions to the Tour Guide</p>
 				</a>
 			</li>
 
-		<li><a id="gs" data-icon="bar-chart" data-iconpos="left" href="/stats">
+		<li><a id="gs" class='list_link' data-icon="bar-chart" data-iconpos="left" href="/stats">
 			<h2>General Stats/FAQ</h2>
 			<p class='menu-explanation'>Check out general statistics and frequently asked questions</p>
 		</a></li>
-		<li><a id="m" data-icon="map-marker" data-iconpos="left" href="/map">
+		<li><a id="m" class='list_link' data-icon="map-marker" data-iconpos="left" href="/map">
 			<h2>Map</h2>
 			<p class='menu-explanation'>Visually explore the campus</p>
 		</a></li>
-		<li><a id="e" data-icon="calendar" data-iconpos="left" href="/events?date">
+		<li><a id="e" class='list_link' data-icon="calendar" data-iconpos="left" href="/events?date">
 			<h2>Events</h2>
 			<p class='menu-explantion'>See what's going on this week at CollegeTech </p>
 			</a></li>
-		<li><a id="s" data-icon="comments" data-iconpos="left" href="/stories">
+		<li><a class='list_link' id="s" data-icon="comments" data-iconpos="left" href="/stories">
 			<h2>Stories</h2>
 			<p class='menu-explanation'>Hear from CollegeTech students about life at the university</p>
 		</a></li>
 		<li>
-			<a id="tf" data-icon="thumbs-up" href="/tour_feedback">
+			<a class='list_link' id="tf" data-icon="thumbs-up" href="/tour_feedback">
 				<h2>Tour Feedback</h2>
 				<p class='menu-explanation'> Give Feedback to your Tour Guide </p>
 			</a>
