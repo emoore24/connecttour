@@ -45,8 +45,9 @@ exports.show = function(req, res){
 	                	console.log('adfsasdfsadf');
 	                    for (var row in result.rows) {
                             uidlist.push(result.rows[row].user_id);
-	                    	storylist.push([row.user_id, row.college_id,
-                                            row.story_text]);
+	                    	storylist.push([result.rows[row].user_id,
+                                            result.rows[row].college_id,
+                                            result.rows[row].story_text]);
 	                    }
 	                }
 	            });
