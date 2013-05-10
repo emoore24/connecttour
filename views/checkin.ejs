@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="/stylesheets/custom-theme.css" />
   <link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.1/jquery.mobile.structure-1.3.1.min.css" />
   <link rel="stylesheet" href="/stylesheets/master.css" />
+  <link rel="stylesheet" href="/stylesheets/jqm-icon-pack-3.0.0-fa.css" />
   <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
   <script src="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.js"></script>
   <!--
@@ -17,36 +18,36 @@
 <body>
 <div data-role="page" data-theme="a">
   <div data-role="header" data-theme="b">
-    <h1 class="sanford">ConnecTour</h1>
+    <h1 class="sanford">Check In</h1>
   </div>
   <div data-role="content" data-theme="a" >
     <form id="checkin" name="checkin" action="/main" method="post">
-      <label for="select_school" class="select">Select School:</label>
+      <label for="select_school" class="font_helvetica select">Select School:</label>
       <select name="select_school" id="select_school">
-        <option value="MIT">MIT</option>
-        <option value="BostonUniversity">Boston University</option>
-        <option value="Harvard">Harvard</option>
+        <option class="font_helvetica" value="MIT">MIT</option>
+        <option class="font_helvetica" value="BostonUniversity">Boston University</option>
+        <option class="font_helvetica" value="Harvard">Harvard</option>
       </select>
-      <label for="select_tour_guide" class="select">Select Tour:</label>
+      <label for="select_tour_guide" class="font_helvetica select">Select Tour:</label>
       <select name="select_tour_guide_mit" class="select_tour_guide MIT">
-        <option value="Dominic">Dominic, 9:00 AM</option>
-        <option value="Claire">Claire, 11:00 AM</option>
-        <option value="Mark">Mark, 2:00 PM</option>
-        <option value="Bob">Bob, 3:00 PM</option>    
+        <option class="font_helvetica" value="Dominic">Dominic, 9:00 AM</option>
+        <option class="font_helvetica" value="Claire">Claire, 11:00 AM</option>
+        <option class="font_helvetica" value="Mark">Mark, 2:00 PM</option>
+        <option class="font_helvetica" value="Bob">Bob, 3:00 PM</option>    
       </select>
-      <select name="select_tour_guide_bu" class="select_tour_guide BostonUniversity">
-        <option value="Claretha">Claretha, 9:00 AM</option>
-        <option value="Alan">Alan, 10:00 AM</option>
-        <option value="Megan">Megan, 2:00 PM</option>
-        <option value="Cesar">Cesar, 4:00 PM</option>    
+      <select name="select_tour_guide_bu" class="font_helvetica select_tour_guide BostonUniversity">
+        <option class="font_helvetica" value="Claretha">Claretha, 9:00 AM</option>
+        <option class="font_helvetica" value="Alan">Alan, 10:00 AM</option>
+        <option class="font_helvetica" value="Megan">Megan, 2:00 PM</option>
+        <option class="font_helvetica" value="Cesar">Cesar, 4:00 PM</option>    
       </select>
-      <select name="select_tour_guide_harvard" class="select_tour_guide Harvard">
-        <option value="Maddie">Maddie, 8:00 AM</option>
-        <option value="Suzette">Suzette, 11:00 AM</option>
-        <option value="Humberto">Humberto, 1:00 PM</option>
-        <option value="Isaiah">Isaiah, 3:00 PM</option>    
+      <select name="select_tour_guide_harvard" class="font_helvetica select_tour_guide Harvard">
+        <option class="font_helvetica" value="Maddie">Maddie, 8:00 AM</option>
+        <option class="font_helvetica" value="Suzette">Suzette, 11:00 AM</option>
+        <option class="font_helvetica" value="Humberto">Humberto, 1:00 PM</option>
+        <option class="font_helvetica" value="Isaiah">Isaiah, 3:00 PM</option>    
       </select>
-      <input type="submit" id="submit_checkin" value="Check_In" data-icon="grid" data-iconpos="right" />
+      <input type="submit" id="submit_checkin" value="Check In" data-icon="grid" data-iconpos="right" />
     </form>
   </div>
 </div>

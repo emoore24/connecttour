@@ -12,7 +12,7 @@ var domain = 'localhost';
 //require the module
 var sql = require('sql');
 
-var pg = require('pg').native;
+var pg = require('pg');
 module.pg = pg;
 
 //defining our tables
@@ -28,7 +28,7 @@ var story = sql.define({
     
 var college = sql.define({
     name: 'Colleges',
-    columns: ['college_id', 'name']
+    columns: ['college_id', 'name', 'latitude', 'longitude']
 }); 
     
 var tour = sql.define({
@@ -100,7 +100,7 @@ app.configure(function(){
 
   app.set('template_engine', 'ejs');
   app.set('domain', domain);
-  app.set('port', process.env.PORT || 8080);
+  app.set('port', process.env.PORT || 8000);
   app.set('views', __dirname + '/views');
   app.set('view engine', 'ejs');
   app.use(express.favicon());
@@ -158,6 +158,7 @@ module.io = io;
 var num_ppl = 0;
 io.sockets.on('connection', function (socket) {
     num_ppl++;
+    io.sockets.emit('number of visitors', num_ppl);
     console.log('NEW CONNECTION!');
     io.sockets.emit('new_q', qq);
     socket.on('disconnect', function () {
@@ -228,14 +229,14 @@ app.post('/main', function(req, res) {
             module.college_checkin = true;
             module.current_college = select_school
           }
-          if (select_school === 'Harvard') {
+          if (select_school == 'Harvard') {
             console.log(select_tour_guide_harvard);
             select_tour_guide = select_tour_guide_harvard;
           }
           else if (select_school == 'MIT') {
             select_tour_guide = select_tour_guide_mit;
           }
-          else if (select_school != 'BostonUniversity')  {
+          else if (select_school == 'BostonUniversity')  {
             select_tour_guide = select_tour_guide_bu;
           }
           var guide_query = user
